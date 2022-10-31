@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+{% extends "base.html" %}
+<head>
+    <title>SJLSHS Portal</title>
+    <link rel="stylesheet" href="../CSS/design.css">
+</head>
+<body>
+    {% block content %}
+    <div class="webpage-grid">
+        <div class="row2-school-logo">
+            <img src="../images/sjlshs_logo_resizedV2-removedbg.png">
+            <a><button>Learn more</button></a>
+        </div>
+        <div class="row3-news">
+            <h1>What's New?</h1>
+            <div class="news-section">
+                <div class="news-image">
+                    <img src="../images/school-bg.jpg">
+                </div>
+                <div class="news-body">
+                    <div class="news-headline">
+                        <h2>News Headline</h2>
+                        <hr>
+                    </div>
+                    <div class="news-info">
+                        <p>Some text... Some text...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row4-academic-offerings">
+            <h1>Tracks and Strands</h1>
+        </div>
+        <div class="row5-std-portal">
+            <h1>Student Portal</h1>
+        </div>
+        <div class="row6-contacts">
+            <h1>Contacts</h1>
+        </div>
+    </div>
+    {% endblock %}
+</body>

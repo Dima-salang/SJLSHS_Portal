@@ -1,43 +1,112 @@
 
 <!DOCTYPE html>
 {% extends "base.html" %}
+{% load static %}
 <head>
     <title>SJLSHS Portal</title>
-    <link rel="stylesheet" href="../CSS/design.css">
 </head>
 <body>
     {% block content %}
-    <div class="webpage-grid">
-        <div class="row2-school-logo">
-            <img src="../images/sjlshs_logo_resizedV2-removedbg.png">
-            <a><button>Learn more</button></a>
-        </div>
-        <div class="row3-news">
-            <h1>What's New?</h1>
-            <div class="news-section">
-                <div class="news-image">
-                    <img src="../images/school-bg.jpg">
-                </div>
-                <div class="news-body">
-                    <div class="news-headline">
-                        <h2>News Headline</h2>
-                        <hr>
-                    </div>
-                    <div class="news-info">
-                        <p>Some text... Some text...</p>
-                    </div>
-                </div>
+    <div class="container-fluid">
+        <div class="row" id="row-2-school-logo">
+            <div class="col" id="col-school-logo">
+                <img src="{% static 'images/school-background.png' %}" class="img-fluid d-block mx-auto" id="home-bg">
             </div>
         </div>
-        <div class="row4-academic-offerings">
-            <h1>Tracks and Strands</h1>
+        <div class="row border dark">
+                <h1 align="center" id="news-head">What's New?</h1>
+            <div id="carousel-slides" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card w-75 mx-auto d-block">
+                            <div class="row g-0">
+                                <div class="col md-5">
+                                    <div>
+                                        <img src="{% static 'images/school-bg.jpg' %}" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body">
+                                        <div class="news-headline">
+                                            <h2 class="card-title">News Headline</h2>
+                                            <hr>
+                                        </div>
+                                        <div>
+                                            <p class="card-text">Some text... Some text...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card w-75 mx-auto d-block">
+                            <div class="row g-0">
+                                <div class="col md-5">
+                                    <div>
+                                        <img src="{% static 'images/school-bg.jpg' %}" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body">
+                                        <div class="news-headline">
+                                            <h2 class="card-title">News Headline</h2>
+                                            <hr>
+                                        </div>
+                                        <div>
+                                            <p class="card-text">Some text... Some text...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card w-75 mx-auto d-block">
+                            <div class="row g-0">
+                                <div class="col md-5">
+                                    <div>
+                                        <img src="{% static 'images/school-bg.jpg' %}" class="card-img">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body">
+                                        <div class="news-headline">
+                                            <h2 class="card-title">News Headline</h2>
+                                            <hr>
+                                        </div>
+                                        <div>
+                                            <p class="card-text">Another text... Some text...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-slides" role="button" data-slide="prev"><span class="carousel-control-prev-icon bg-dark" aria-hidden="true">
+                    </span></a>
+                    <a class="carousel-control-next" href="#carousel-slides" role="button" data-slide="next"><span class="carousel-control-next-icon bg-dark" aria-hidden="true">
+                    </span></a>
+                </div>
+            </div>
+        <div class="row border dark">
+            <div class="tracks-strands">
+                <h1 align="center">Tracks and Strands</h1>
+                <img src="{% static 'images/stem_strand_resized.png' %}" id="stem_logo">
+                <img src="{% static 'images/humss_strand.png' %}" id="humss_logo">
+                <img src="{% static 'images/abm_track.png' %}" id="abm_logo">
+                <img src="{% static 'images/tvl_track.png' %}" id="tvl_logo">
+            </div>
+            
+
         </div>
-        <div class="row5-std-portal">
+        <div class="row">
             <h1>Student Portal</h1>
         </div>
-        <div class="row6-contacts">
+        <div class="row">
             <h1>Contacts</h1>
         </div>
     </div>
+    
     {% endblock %}
 </body>

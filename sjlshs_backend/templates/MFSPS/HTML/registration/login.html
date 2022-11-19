@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'CSS/design.css' %}">
+    </head>
+    {% block content %}
+    <body class="register-page">
+        
+        <div class="reg-box">
+            <div class="reg-title">
+                <h2>SJLSHS LOGIN</h2>
+            </div>
+            <div class="reg-forms">
+                <form method="post"> {% csrf_token %}
+                    {{form|crispy}}
+                    <button type="Submit" class="btn btn-outline-primary">Submit</button>
+                </form>
+            </div>
+            <div class="reg-add-info">
+
+            </div>
+        </div>
+    </body>
+    {% endblock %}
+</html>

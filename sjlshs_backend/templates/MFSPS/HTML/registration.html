@@ -1,29 +1,10 @@
 <!DOCTYPE html>
+{% extends 'base.html' %}
 <head>
     <title>SJLSHS-Student Registration</title>
-    <link rel="stylesheet" href="../CSS/design.css">
 </head>
+{% block content %}
 <body class="register-page">
-            <div class="row1-nav">
-                <nav id="top">
-                    <ul>
-                        <a><li>SJLSHS</li></a>
-                        <a href="home.html"><li>Home</li></a>
-                        <a><li>News</li></a>
-                        <a><li>Students</li></a>
-                        <div class="drpdwn" id="drpdwn-box">
-                            <a><li id="drpdwn-elem">Students</li></a>
-                            <div class="drpdwn-content">
-                                <a href="#"><li>Student Enrollment</li></a>
-                                <a href="#"><li>Academic Offerings</li></a>
-                                <a href="registration.html"><li>Student Portal</li></a>
-                            </div>
-                        </div>
-                        <a><li>Faculty & Staff</li></a>
-                        <a><li>About</li></a>
-                    </ul>
-                </nav>
-            </div>
             <div class="reg-box">
                 <div class="reg-title">
                     <h2>SJLSHS REGISTRATION</h2>
@@ -61,4 +42,5 @@
             </div>
     </div>
 </body>
+{% endblock%}
 </html>

@@ -23,7 +23,7 @@ class StudentUser(AbstractUser):
     REQUIRED_FIELDS = ['lrn', 'birthday', 'age', 'email']
 
     def __str__(self):
-        return f"{self.lrn} - {self.last_name}"
+        return str(self.lrn)
 
 
 class TeacherUser(models.Model):

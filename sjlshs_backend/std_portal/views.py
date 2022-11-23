@@ -16,7 +16,7 @@ class PortalHomeView(ListView):
     template_name = "portal-home.html"
     
 
-class PortalGradeView(DetailView):
+class PortalGradeView(ListView):
     model = Grades1stSem
     template_name = "portal-grades.html"
 

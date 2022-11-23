@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomCreationForm, CustomerUserChangeForm
-from .models import StudentUser
+from .models import StudentUser, TeacherUser, StudentSection
 
 
 
@@ -16,6 +16,8 @@ admin.site.site_header = "SJLSHS Portal"
 # Register your models here.
 
 admin.site.register(StudentUser)
+admin.site.register(TeacherUser)
+admin.site.register(StudentSection)
 
 
 

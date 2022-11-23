@@ -1,4 +1,6 @@
 from django.db import models
+from accounts.models import StudentUser
+
 
 # Create your models here.
 
@@ -11,10 +13,10 @@ class Student(models.Model):
     Sex = models.TextField(default="Undetermined")
 
 sections = (
-    ("Microsoft", "Microsoft"),
-    ("Python", "Python"),
-    ("Java", "Java"),
-    ("Oracle", "Oracle")
+    (1, "Microsoft"),
+    (2, "Python"),
+    (3, "Java"),
+    (4, "Oracle")
 )
 
 class Post(models.Model):
@@ -25,3 +27,14 @@ class Post(models.Model):
 
     def __str__(self):
         return self.Title
+
+class Grades1stSem(models.Model):
+    pr2 = models.SmallIntegerField(default=0)
+    cpar = models.SmallIntegerField(default=0)
+    pe = models.SmallIntegerField(default=0)
+    spec = models.SmallIntegerField(default=0)
+    ucsp = models.SmallIntegerField(default=0)
+    philo = models.SmallIntegerField(default=0)
+    eapp = models.SmallIntegerField(default=0)
+    lrn = models.ForeignKey(StudentUser, null=False, on_delete=models.CASCADE)
+

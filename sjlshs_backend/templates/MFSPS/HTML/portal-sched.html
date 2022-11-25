@@ -13,6 +13,7 @@
     <form method="post" enctype="multipart/form-data"> {% csrf_token %}
         <input type="file" name="document_file">
         <button type="submit">Upload File</button>
+        <a href="{{url}}">{{url}}</a><br>
     </form>
     {% endblock%}
 </body>

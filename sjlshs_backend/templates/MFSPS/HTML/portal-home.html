@@ -73,10 +73,12 @@
                 <div class="dashboard-announcements">
                     <h2>Announcements</h2>
                     {% for Post in object_list %}
+                        {% if user.section == Post.Section %}
                         <div class="post-entry">
                             <h3>{{Post.Title}}</h3><p>{{Post.Date}}</p>
                             <p>{{Post.Body}}</p>
                         </div>
+                        {% endif %}
                     {% endfor %}
                         
                 </div>

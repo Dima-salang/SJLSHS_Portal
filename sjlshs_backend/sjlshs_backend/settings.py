@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 
     # own
     'std_portal',
-    'accounts'
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -134,7 +134,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

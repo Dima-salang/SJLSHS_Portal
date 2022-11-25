@@ -19,17 +19,19 @@ class PortalHomeView(ListView):
     
 
 class PortalGradeView(ListView):
-    grades = GradePost.objects.all
     model = GradePost
     template_name = "portal-grades.html"
 
 
 def uploadfile(request):
+    context = {}
     if request.method == 'POST':
         uploaded_file = request.FILES['document_file']
         fs = FileSystemStorage()
-        fs.save(uploaded_file.name, uploaded_file)
-    return render(request, 'portal-sched.html', {})
+        name = fs.save(uploaded_file.name, uploaded_file)
+        context['url'] = fs.url(name)
+
+    return render(request, 'portal-sched.html', context)
 
         
 

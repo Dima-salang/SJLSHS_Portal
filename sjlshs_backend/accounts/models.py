@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 # Create your models here.
 
 
@@ -23,7 +24,7 @@ class StudentUser(AbstractUser):
     REQUIRED_FIELDS = ['lrn', 'birthday', 'age', 'email']
 
     def __str__(self):
-        return str(self.lrn)
+        return f"{self.lrn} - {self.last_name}, {self.first_name} ({self.section})"
 
 
 class TeacherUser(models.Model):
@@ -35,4 +36,6 @@ class TeacherUser(models.Model):
 
     def __str__(self):
         return self.last_name
+
+
 

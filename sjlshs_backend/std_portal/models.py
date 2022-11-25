@@ -1,34 +1,22 @@
 from django.db import models
-from accounts.models import StudentUser
+from accounts.models import StudentUser, StudentSection, TeacherUser
+from django.conf import settings
+
 
 
 # Create your models here.
 
-
-class Student(models.Model):
-    LRN = models.TextField()
-    Name = models.TextField()
-    Age = models.TextField()
-    Section = models.TextField()
-    Sex = models.TextField(default="Undetermined")
-
-sections = (
-    (1, "Microsoft"),
-    (2, "Python"),
-    (3, "Java"),
-    (4, "Oracle")
-)
-
 class Post(models.Model):
+    Author = models.CharField(max_length=50, null=True)
     Title = models.CharField(max_length=50)
     Body = models.TextField(null=True)
-    Section = models.CharField(max_length=50, choices=sections)
+    Section = models.ForeignKey(StudentSection, null=False, on_delete=models.CASCADE)
     Published = models.DateTimeField()
 
     def __str__(self):
-        return self.Title
+        return f"{self.Author} {self.Title}"
 
-class Grades1stSem(models.Model):
+class GradePost(models.Model):
     pr2 = models.SmallIntegerField(default=0)
     cpar = models.SmallIntegerField(default=0)
     pe = models.SmallIntegerField(default=0)
@@ -36,5 +24,9 @@ class Grades1stSem(models.Model):
     ucsp = models.SmallIntegerField(default=0)
     philo = models.SmallIntegerField(default=0)
     eapp = models.SmallIntegerField(default=0)
-    lrn = models.ForeignKey(StudentUser, null=False, on_delete=models.CASCADE)
+    lrn = models.OneToOneField(StudentUser, null=False, on_delete=models.CASCADE, related_name='GradePost')
+
+    def __str__(self):
+        return str(self.lrn)
+
 

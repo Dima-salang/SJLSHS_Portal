@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
+{% extends 'portal-home.html' %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,27 +8,32 @@
     <title>Student Grades</title>
 </head>
 <body>
-    {% block content%}
-    <table>
-        {% for Grades1stSem in object_list %}
-            {% if user.lrn == Grades1stSem.lrn %}
-             <tr>
-                <th>PR2</th>
-                <th>CPAR</th>
-                <th>PE</th>
-                <th>SPEC</th>
-                <th>UCSP</th>
-                <th>PHILO</th>
-                <th>EAPP</th>
-             </tr>
-             <tr>
-                <td>{{ Grades1stSem.pr2 }}</td>
-                <td>{{ Grades1stSem.cpar}}</td>
-                <td>{{ Grades1stSem.pe}}</td>
-                <td>{{ Grades1stSem.spec}}</td>
-             </tr>
-             {% endif %}
-        {% endfor %}
+    {% block col_content %}
+    <h1>1st Semester Grades</h1>
+    <h3>{{ user.lrn}} - {{ user.last_name}}, {{user.first_name}} ({{user.section}} )</h3>
+    <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">PR2</th>
+                        <th scope="col">CPAR</th>
+                        <th scope="col">PE</th>
+                        <th scope="col">SPEC</th>
+                        <th scope="col">UCSP</th>
+                        <th scope="col">PHILO</th>
+                        <th scope="col">EAPP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ user.GradePost.pr2 }}</td>
+                        <td>{{ user.GradePost.cpar}}</td>
+                        <td>{{ user.GradePost.pe}}</td>
+                        <td>{{ user.GradePost.spec}}</td>
+                        <td>{{ user.GradePost.ucsp}}</td>
+                        <td>{{ user.GradePost.philo}}</td>
+                        <td>{{ user.GradePost.eapp}}</td>
+                    </tr>
+                </tbody>
     </table>
     {% endblock %}
     

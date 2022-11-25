@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,7 +48,7 @@ INSTALLED_APPS = [
 
     # own
     'std_portal',
-    'accounts',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -112,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'accounts.StudentUser'
 
 
 # Internationalization
@@ -134,6 +136,8 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/images/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
@@ -147,3 +151,5 @@ LOGOUT_REDIRECT_URL = 'home'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+AUTH_USER_MODEL = 'accounts.StudentUser'

@@ -9,9 +9,13 @@
 </head>
 <body>
     {% block col_content %}
-    <h1>1st Semester Grades</h1>
-    <h3>{{ user.lrn}} - {{ user.last_name}}, {{user.first_name}} ({{user.section}} )</h3>
-    <table class="table">
+    <div class="card">
+        <div class="card-header">
+            <h1>1st Semester Grades</h1>
+            <h3>{{ user.lrn}} - {{ user.last_name}}, {{user.first_name}} ({{user.section}} )</h3>
+        </div>
+        <div class="card-body">
+            <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">PR2</th>
@@ -34,7 +38,10 @@
                         <td>{{ user.GradePost.eapp}}</td>
                     </tr>
                 </tbody>
-    </table>
+            </table>
+        </div>
+    </div>
+    
     {% endblock %}
     
     

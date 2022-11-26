@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'portal-home.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Announcements</title>
+</head>
+<body>
+    {% block col_content %}
+           
+    <div class="row m-0">
+        <div class="col gx-0">
+          <div class="card w-100 mx-auto" id="announcement-card">
+            <div class="card-body">
+              <h2 class="card-title">Announcements</h2><hr>
+            </div>
+          </div>
+          <div class="card w-100 mx-auto" id="post-cards">
+            <div class="card-body">
+              <div class="dashboard-announcements">
+                
+                {% for Post in object_list %}
+                    {% if user.section == Post.Section %}
+                    <div class="card-text">
+                        <h5>{{Post.Title}}</h5>
+                        <p>{{Post.Body}}</p>
+                    </div>
+                    <div class="card-footer">
+                      <p class="text-muted">{{Post.Author}} - {{Post.Published}}</p>
+                    </div><hr>
+                    {% endif %}
+                {% endfor %} 
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endblock %}
+    
+</body>
+</html>

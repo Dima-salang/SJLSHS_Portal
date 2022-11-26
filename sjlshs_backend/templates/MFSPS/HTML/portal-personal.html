@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'portal-home.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+</head>
+<body>
+    {% block col_content%}
+        <div class="card">
+            <div class="card-header">
+                <h1>Name: {{user.last_name}}, {{user.first_name}}</h1>
+            </div>
+            <div class="card-body">
+                <h5>LRN: {{user.lrn}}</h5>
+                <h5>LAST NAME: {{user.last_name}}</h5>
+                <h5>FIRST NAME: {{user.first_name}}</h5>
+                <h5>SECTION: {{user.section}}</h5>
+                <h5>BIRTHDAY: {{user.birthday}}</h5>
+                <h5>USERNAME: {{user.username}}</h5>
+                <h5>EMAIL: {{user.email}}</h5>
+            </div>
+        </div>
+    {% endblock %}
+    
+</body>
+</html>

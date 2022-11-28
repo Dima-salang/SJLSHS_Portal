@@ -1,5 +1,7 @@
-body {
+body, html {
     margin: 0 0 0 0;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
 }
 
 #home-navigation a {
@@ -11,12 +13,23 @@ body {
 }
 
 
-
-#home-bg {
-    object-fit: cover;
+#col-school-logo {
+    background-image: url(../images/sch-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
     width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    height: 100%;
+
+}
+
+#bg-title {
+    margin: 40px auto 80px auto;
+    color: white;
+    text-align: center;
+    font-size: 75px;
+    font-family: 'Merriweather', serif;
+    text-shadow: 10px 10px 10px black;
 }
 
 #home-btn {
@@ -39,17 +52,130 @@ body {
     margin-top: 20px;
 }
 
+#news-h1 {
+    font-size: 60px;
+    font-weight: 800;
+    font-family: 'Merriweather', serif;
+    margin-top: 50px;
+}
+
+#news-descrip {
+    font-size: 30px;
+}
+
+
+.news-inline {
+    position: absolute;
+    float:right;
+}
+
+.carousel-item-active {
+    box-shadow: inset 50px 0px 10px 10px black;
+}
+
+
+
+#news-headlines1{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 
 .card{
     margin-top: 20px;
-    box-shadow: 5px 5px 40px black;
+}
+
+#news-card-1 {
+    margin-bottom: 100px;
+}
+
+#news-card-2 {
+    margin-bottom: 100px;
+}
+
+#news-card-3 {
+    margin-bottom: 100px;
+}
+
+#news-btn {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 
 .tracks-strands img{
     margin: 20px 20px 20px 20px;
-    border: 2px solid black;
 }
+
+.tracks-strands h1{
+    font-family: 'Merriweather', serif;
+    font-weight: 800;
+    font-size: 60px;
+    margin-top: 50px;
+}
+
+.tracks-strands {
+    
+}
+
+#stem-subtitle {
+    text-shadow: 5px 5px 10px black;
+}
+
+#humss-subtitle {
+    text-shadow: 5px 5px 10px black;
+}
+
+#abm-subtitle {
+    text-shadow: 5px 5px 10px black;
+}
+
+#tvl-subtitle {
+    text-shadow: 5px 5px 10px black;
+}
+
+#offerings-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}
+
+.enrollment-process h1 {
+    font-family: 'Merriweather', serif;
+    font-weight: 800;
+    font-size: 60px;
+    margin-top: 50px;
+}
+
+#enrollment-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}
+
+.contacts {
+    background-color: #073b4c;
+    color: whitesmoke;
+}
+
+.contacts h1{
+    font-family: 'Merriweather', serif;
+    font-weight: 800;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.contacts p {
+    margin-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -94,13 +220,47 @@ body {
     margin-bottom: 0;
 }
 
-.w-80 {
-    width: 80%;
+.w-70 {
+    width: 70%;
 }
 
-.w-30 {
-    width: 30%;
+.w-95 {
+    width: 95%;
 }
+
+.w-45 {
+    width: 45%;
+}
+
+.w-35 {
+    width: 35%;
+}
+
+#portal-home-bg, #portal-home-bg2 {
+    background-color: #caf0f8;
+}
+
+#portal-menu {
+    background-color: #03045e;
+    color: whitesmoke;
+}
+
+#portal-menu a {
+    text-decoration: none;
+    color: whitesmoke;   
+}
+
+#portal-menu ul {
+    list-style: none;
+}
+
+#portal-menu h2 {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+
+
 
 
 

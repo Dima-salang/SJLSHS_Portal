@@ -1,165 +1,236 @@
 <!DOCTYPE html>
-{% load static %}
-<head>
-    <link href="{% static 'CSS/bootstrap-5.2.2-dist/css/bootstrap.min.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">   
-    <link  rel="stylesheet" href="{% static 'CSS/design.css' %}">
+<html>
+  <head></head>
+  <body class="portal-bg">
+    {% load static %}
+    <link
+      href="{% static 'CSS/bootstrap-5.2.2-dist/css/bootstrap.min.css' %}"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+        
+    <link rel="stylesheet" href="{% static 'CSS/design.css' %}" />
     <script src="{% static 'CSS/bootstrap-5.2.20dist/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
     <title>SJLSHS-Student Portal</title>
-</head>
-<body class="portal-bg">
-    <nav class="navbar navbar-expand-lg bg-primary sticky-top" id="home-navigation">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">SJLSHS</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Faculty and Staff</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Students
-                </a>
-                <ul class="dropdown-menu" id="drpdown-menu">
-                  <li><a class="dropdown-item" href="#">Student Enrollment</a></li>
-                  <li><a class="dropdown-item" href="#">Academic Offerings</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  {% if user.is_authenticated %}
-                  <li><a class="dropdown-item" href="{% url 'portal-home' %}">Student Portal</a></li>
-                  {% else %}
-                  <li><a class="dropdown-item" href="{% url 'signup' %}">Student Portal</a></li>
-                  {% endif %}
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link">About</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-              </li>
-              {% endif %}
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+    <nav
+      class="navbar navbar-expand-lg bg-primary sticky-top"
+      id="home-navigation"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">SJLSHS</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{% url 'home' %}"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Faculty and Staff</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Students
+              </a>
+              <ul class="dropdown-menu" id="drpdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">Student Enrollment</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Academic Offerings</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                  <a class="dropdown-item" href="{% url 'portal-home' %}"
+                    >Student Portal</a
+                  >
+                </li>
+                {% else %}
+                <li>
+                  <a class="dropdown-item" href="{% url 'signup' %}"
+                    >Student Portal</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">About</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% endif %}
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
         </div>
+      </div>
     </nav>
     {% block content %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-2">
-                <h1>Menu</h1>
-                <ul>
-                    <li><a href="{% url 'portal-home' %}">Dashboard</a></li>
-                    <li><a href="{% url 'portal-sched' %}">Class Schedule</a></li>
-                    <li><a href="{% url 'portal-grade' %}">Grades</a></li>
-                    <li><a href="{% url 'portal-personal' %}">Student Information</a></li>
-                    <li><a href="{% url 'portal-announcements' %}">Announcements</a></li>
-                    <li>Modules</li>
-                </ul>
-            </div>
-            <div class="col">
-                {% block col_content %}
-                <div class="container-fluid " id="dashboard-background-container">
-                  <div class="dashboard-container">
-                      <div class="row h-25" id="dashboard-header">
-                        <h1>Dashboard</h1>
-                        <div class="card w-25 mx-auto" id="greeting-card">
-                          <div class="card-body text-center">
-                            <h2>Hello, {{user.first_name}}</h2>
-                          </div>
-                        </div>
-                      </div>
-                        <div class="row">
-                          <div class="card mx-auto">
-                            <div class="card-header">
-                              <h3>Student Information</h3>
-                            </div>
-                            <div class="card-body">
-                              <h5>LRN: {{user.lrn}}</h5>
-                              <h5>LAST NAME: {{user.last_name}}</h5>
-                              <h5>FIRST NAME: {{user.first_name}}</h5>
-                              <h5>SECTION: {{user.section}}</h5>
-                              <h5>ADVISER: {{user.section.section_adviser}}</h5>
-                              <h5>ADVISER CONTACT NUMBER: {{user.section.section_adviser.contact_num}}</h5>
-                              <h5>BIRTHDAY: {{user.birthday}}</h5>
-                              <h5>USERNAME: {{user.username}}</h5>
-                              <h5>EMAIL: {{user.email}}</h5>
-                            </div>
-                          </div>
-                        </div>
-                        
-                      <div class="row m-0">
-                        <div class="col gx-0">
-                          <div class="card w-80" id="announcement-card">
-                            <div class="card-body">
-                              <h2 class="card-title">Announcements</h2><hr>
-                            </div>
-                            <div class="card-footer">
-                              <a href="{% url 'portal-announcements' %}">See all announcements</a>
-                            </div>
-                          </div>
-                          <div class="card w-80" id="post-cards">
-                            <div class="card-body">
-                              <div class="dashboard-announcements">
-                                
-                                {% for Post in object_list %}
-                                    {% if user.section == Post.Section %}
-                                    <div class="card-text">
-                                        <h5>{{Post.Title}}</h5>
-                                        <p>{{Post.Body}}</p>
-                                    </div>
-                                    <div class="card-footer">
-                                      <p class="text-muted">{{Post.Author}} - {{Post.Published}}</p>
-                                    </div><hr>
-                                    {% endif %}
-                                {% endfor %} 
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                          <div class="card w-30">
-                            <div class="card-body">
-                              <h2 class="card-title">Grades - 1st Quarter</h2><hr>
-                              <p>PR2: {{ user.GradePost.pr2 }}</p>
-                              <p>CPAR: {{ user.GradePost.cpar}}</p>
-                              <p>PE: {{ user.GradePost.pe}}</p>
-                              <p>SPEC: {{ user.GradePost.spec}}</p>
-                              <p>UCSP: {{ user.GradePost.ucsp}}</p>
-                              <p>PHILO: {{ user.GradePost.philo}}</p>
-                              <p>EAPP: {{ user.GradePost.eapp}}</p>
-                            </div>
-                            <div class="card-footer">
-                              <a href="{% url 'portal-grade' %}">See full grades</a>
-                            </div>
-                          </div>
-                        </div>
-                        
-                      </div>
-                      </div>
-                    </div>
-                    </div>
-                    
-          
-                  </div>
-                  
-                
-                
-            </div>
-                {% endblock col_content %}
+      <div class="row">
+        <div class="col-2" id="portal-menu">
+          <h2 class="text-center">Hello, {{user.first_name}}</h2>
+            <ul class="text-center mx-auto">
+              <a href="{% url 'portal-home' %}" class="list-group-item list-group-item-action active" aria-current="true">
+                Dashboard
+              </a>
+              <a href="{% url 'portal-sched' %}" class="list-group-item list-group-item-action">Class Schedule</a>
+              <a href="#" class="list-group-item list-group-item-action">Grades</a>
+              <a href="#" class="list-group-item list-group-item-action">Student Information</a>
+              <a href="#" class="list-group-item list-group-item-action" tabindex="-1">Announcements</a>
+            </ul>
         </div>
+        <div class="col-7" id="portal-home-bg">
+          {% block col_content %}
+        
+          <div class="container-fluid" id="dashboard-background-container">
+              <div class="row h-25" id="dashboard-header">
+                <div class="card w-100 mx-auto" id="greeting-card">
+                  <div class="card-body text-center">
+                    <h1>Dashboard</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="card w-100" id="post-cards">
+                    <div class="card-body">
+                      <div class="dashboard-announcements">
+                        <h2 class="card-title">Announcements</h2>
+                        <hr />
+                        {% for Post in object_list %} 
+                        {% if user.section == Post.Section %}
+                        <div class="card-text">
+                          <h5>{{Post.Title}}</h5>
+                          <p>{{Post.Body}}</p>
+                        </div>
+                        <div class="card-footer">
+                          <p class="text-muted">
+                            {{Post.Author}} - {{Post.Published}}
+                          </p>
+                        </div>
+                        <hr />
+                        {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="card w-100">
+                    <div class="card-body">
+                      <h3 class="card-title">Grades - 1st Quarter</h3>
+                      <hr />
+                      <p>PR2: {{ user.GradePost.pr2 }}</p>
+                      <p>CPAR: {{ user.GradePost.cpar}}</p>
+                      <p>PE: {{ user.GradePost.pe}}</p>
+                      <p>SPEC: {{ user.GradePost.spec}}</p>
+                      <p>UCSP: {{ user.GradePost.ucsp}}</p>
+                      <p>PHILO: {{ user.GradePost.philo}}</p>
+                      <p>EAPP: {{ user.GradePost.eapp}}</p>
+                    </div>
+                    <div class="card-footer">
+                      <a href="{% url 'portal-grade' %}">See full grades</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card w-100">
+                    <div class="card-body">
+                      <h3 class="card-title">Student Information</h3>
+                      <hr />
+                      <h5>LRN: {{user.lrn}}</h5>
+                      <h5>LAST NAME: {{user.last_name}}</h5>
+                      <h5>FIRST NAME: {{user.first_name}}</h5>
+                      <h5>SECTION: {{user.section}}</h5>
+                      <h5>ADVISER: {{user.section.section_adviser}}</h5>
+                      <h5>BIRTHDAY: {{user.birthday}}</h5>
+                      <h5>USERNAME: {{user.username}}</h5>
+                      <h5>EMAIL: {{user.email}}</h5>
+                    </div>
+                    <div class="card-footer">
+                      <a href="{% url 'portal-personal' %}">See full information</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-3" id="portal-home-bg2">
+          <div class="card w-100">
+            <div class="card-body">
+              <h2 class="card-title">Grades - 1st Quarter</h2>
+              <hr />
+              <p>PR2: {{ user.GradePost.pr2 }}</p>
+              <p>CPAR: {{ user.GradePost.cpar}}</p>
+              <p>PE: {{ user.GradePost.pe}}</p>
+              <p>SPEC: {{ user.GradePost.spec}}</p>
+              <p>UCSP: {{ user.GradePost.ucsp}}</p>
+              <p>PHILO: {{ user.GradePost.philo}}</p>
+              <p>EAPP: {{ user.GradePost.eapp}}</p>
+            </div>
+            <div class="card-footer">
+              <a href="{% url 'portal-grade' %}">See full grades</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    {% endblock content %}
-</body>
+    {% endblock col_content %}
+     {% endblock content %}
+  </body>
 </html>

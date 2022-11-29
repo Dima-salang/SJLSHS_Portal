@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser
 class StudentSection(models.Model):
     section_id = models.IntegerField()
     section = models.CharField(max_length=20)
-    section_adviser = models.ForeignKey('TeacherUser', null=True, on_delete=models.SET_NULL)
+    section_adviser = models.ForeignKey('TeacherUser', null=True, on_delete=models.SET_NULL, blank=True)
 
     def __str__(self):
         return self.section
@@ -34,7 +34,7 @@ class TeacherUser(models.Model):
     first_name = models.CharField(max_length=100)
     email = models.EmailField()
     contact_num = models.PositiveBigIntegerField()
-    section_handle = models.ManyToManyField(StudentSection)
+    section_handle = models.ManyToManyField(StudentSection, null=True, blank=True)
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"

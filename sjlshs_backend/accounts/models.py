@@ -4,6 +4,12 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
+class StudentYear(models.Model):
+    Grade_Year = models.PositiveIntegerField()
+
+    def __str__(self):
+        return str(self.Grade_Year)
+
 
 class StudentSection(models.Model):
     section_id = models.IntegerField()
@@ -13,6 +19,13 @@ class StudentSection(models.Model):
     def __str__(self):
         return self.section
 
+class Subject(models.Model):
+    subject_matter = models.CharField(max_length=50)
+    grade_year = models.ForeignKey(StudentYear, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f"{self.subject_matter} - {self.grade_year}"
+
 class StudentUser(AbstractUser):
     lrn = models.PositiveBigIntegerField()
     last_name = models.CharField(max_length=100)
@@ -20,6 +33,7 @@ class StudentUser(AbstractUser):
     age = models.PositiveIntegerField(default=0)
     email = models.EmailField()
     birthday = models.DateField()
+    grade_year = models.ForeignKey(StudentYear, null=True, on_delete=models.SET_NULL)
     section = models.ForeignKey(StudentSection, null=True, on_delete=models.SET_NULL)
 
     REQUIRED_FIELDS = ['lrn', 'age', 'email']
@@ -34,7 +48,8 @@ class TeacherUser(models.Model):
     first_name = models.CharField(max_length=100)
     email = models.EmailField()
     contact_num = models.PositiveBigIntegerField()
-    section_handle = models.ManyToManyField(StudentSection, null=True, blank=True)
+    section_handle = models.ManyToManyField(StudentSection, blank=True)
+    subject_handle = models.ManyToManyField(Subject, blank=True )
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"

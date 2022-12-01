@@ -87,14 +87,38 @@ body, html {
 
 #news-card-1 {
     margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+    transition: 0.5s ease-in-out
+}
+
+#news-card-1:hover{
+    background-color:#0c3483;
+    color: white;
 }
 
 #news-card-2 {
     margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+    transition: 0.5s ease-in-out;
+}
+
+#news-card-2:hover{
+    background-color:#0c3483;
+    color: white;
 }
 
 #news-card-3 {
     margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+    transition: 0.5s ease-in-out;
+}
+
+#news-card-3:hover{
+    background-color:#0c3483;
+    color: white;
 }
 
 #news-btn {
@@ -103,36 +127,28 @@ body, html {
 }
 
 
-.tracks-strands img{
-    margin: 20px 20px 20px 20px;
+#tracks-strands img{
+    margin: 20px 20px 20px 0;
 }
 
-.tracks-strands h1{
+#tracks-strands h1{
     font-family: 'Merriweather', serif;
     font-weight: 800;
     font-size: 60px;
     margin-top: 50px;
 }
 
-.tracks-strands {
-    
-}
 
-#stem-subtitle {
+#tvl-subtitle, #stem-subtitle,
+#humss-subtitle, #abm-subtitle {
     text-shadow: 5px 5px 10px black;
 }
 
-#humss-subtitle {
-    text-shadow: 5px 5px 10px black;
+#tvl-description, #stem-description,
+#abm-description, #humss-description {
+    text-shadow: 3px 3px 10px black;
 }
 
-#abm-subtitle {
-    text-shadow: 5px 5px 10px black;
-}
-
-#tvl-subtitle {
-    text-shadow: 5px 5px 10px black;
-}
 
 #offerings-subtitle {
     font-family: 'Open Sans', sans-serif;
@@ -151,31 +167,24 @@ body, html {
     font-size: 30px;
 }
 
-.contacts {
+#contacts {
     background-color: #073b4c;
     color: whitesmoke;
+    text-align: center;
 }
 
-.contacts h1{
+#contacts h1{
     font-family: 'Merriweather', serif;
     font-weight: 800;
     font-size: 40px;
     margin-top: 20px;
 }
 
-.contacts p {
+#contacts p {
     margin-left: 10px;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -190,6 +199,7 @@ body, html {
     background-image: url("../images/school-bg-blurred.jpg");
     background-repeat:no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .reg-box {
@@ -200,12 +210,94 @@ body, html {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px 20px 20px 20px;
 }
+
+/* LOGIN-REDIRECT */
+
+#portal-redirect-body {
+    background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    background-attachment: fixed;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#login-redirect-title {
+    font-family: 'Merriweather', serif;
+    color: white;
+    font-weight: 800;
+    font-size: 60px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-shadow: 5px 5px 10px black;
+}
+
+#login-redirect a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#redirect-announcements,
+#redirect-dashboard,
+#redirect-info,
+#redirect-modules,
+#redirect-sched,
+#redirect-grades {
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+    transition: 0.5s ease-in-out
+}
+
+#redirect-announcements:hover {
+    background-color:#0c3483;
+    color: white;
+}
+#redirect-dashboard:hover {
+    background-color:#0c3483;
+    color: white;
+}
+#redirect-info:hover {
+    background-color:#0c3483;
+    color: white;
+}
+#redirect-modules:hover {
+    background-color:#0c3483;
+    color: white;
+}
+#redirect-sched:hover {
+    background-color:#0c3483;
+    color: white;
+}
+#redirect-grades:hover {
+    background-color:#0c3483;
+    color: white;
+}
+
+
+
+
+
 /* PORTAL-HOME.HTML CSS */
 
 
 
-#dashboard-header {
+#dashboard-header-card {
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
     height: 100%;
+}
+
+#dashboard-grades {
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+}
+
+#dashboard-student-info {
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+}
+
+#dashboard-grades2 {
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
 }
 
 html {
@@ -216,8 +308,10 @@ body {
     height: 100%;
 }
 
-#announcement-card {
+#post-cards {
     margin-bottom: 0;
+    border-radius: 15px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
 }
 
 .w-70 {
@@ -236,13 +330,17 @@ body {
     width: 35%;
 }
 
-#portal-home-bg, #portal-home-bg2 {
-    background-color: #caf0f8;
+.portal-bg {
+    background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    background-attachment: fixed;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 #portal-menu {
     background-color: #03045e;
     color: whitesmoke;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #portal-menu a {
@@ -257,7 +355,9 @@ body {
 #portal-menu h2 {
     margin-bottom: 50px;
     margin-top: 50px;
+    font-family: 'Merriweather', serif;
 }
+
 
 
 
@@ -266,3 +366,26 @@ body {
 
 /* PORTAL GRADES */
 
+#portal-grades-row1 {
+    height: 100%;
+    display: flex;
+}
+
+#portal-grades-col1 {
+    height: 100%;
+}
+
+#portal-info-row1 {
+    height: 100%;
+    display: flex;
+}
+
+#portal-announcements-row1 {
+    height: 100%;
+    display: flex;
+}
+
+#portal-sched-row1 {
+    height: 100%;
+    display: flex;
+}

@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomCreationForm, CustomerUserChangeForm, UserCreationForm
-from .models import StudentUser, TeacherUser, StudentSection
+from .models import StudentUser, TeacherUser, StudentSection, StudentYear, Subject
 
 fields = list(UserAdmin.fieldsets)
-fields[0] = (None, {'fields': ('lrn', 'username', 'password', 'birthday', 'section')})
+fields[0] = (None, {'fields': ('lrn', 'username', 'password', 'birthday', 'section', 'grade_year')})
 
 admin.site.site_header = "SJLSHS Portal"
 # Register your models here.
@@ -22,6 +22,8 @@ CustomAdmin.fieldsets = tuple(fields)
 admin.site.register(StudentUser, CustomAdmin)
 admin.site.register(TeacherUser)
 admin.site.register(StudentSection)
+admin.site.register(StudentYear)
+admin.site.register(Subject)
 
 
 

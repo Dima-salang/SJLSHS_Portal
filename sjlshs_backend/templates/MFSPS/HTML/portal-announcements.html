@@ -9,8 +9,8 @@
 </head>
 <body>
     {% block content %}
-    <div class="container-fluid">
-      <div class="row">
+    <div class="container-fluid h-100">
+      <div class="row" id="portal-announcements-row1">
         <div class="col-2" id="portal-menu">
           <h2 class="text-center">Hello, {{user.first_name}}</h2>
             <ul class="text-center mx-auto">
@@ -21,6 +21,7 @@
               <a href="{% url 'portal-grade'%}" class="list-group-item list-group-item-action">Grades</a>
               <a href="{% url 'portal-personal' %}" class="list-group-item list-group-item-action">Student Information</a>
               <a href="{% url 'portal-announcements'%}" class="list-group-item list-group-item-action" tabindex="-1">Announcements</a>
+              <a href="{% url 'portal-modules' %}" class="list-group-item list-group-item-action">Modules</a>
             </ul>
         </div>
         <div class="col">

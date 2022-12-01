@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import StudentUser, StudentSection, TeacherUser
+from accounts.models import StudentUser, StudentSection, TeacherUser, StudentYear, Subject
 from django.conf import settings
 
 
@@ -29,4 +29,20 @@ class GradePost(models.Model):
     def __str__(self):
         return str(self.lrn)
 
+class Modules(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    grade = models.ForeignKey(StudentYear, null=True, blank=True, on_delete=models.SET_NULL, related_name='grade')
+    subject = models.ForeignKey(Subject, null=True, on_delete=models.SET_NULL, related_name='subject')
+    file = models.FileField(upload_to=f"media/modules/", max_length=100)
+
+    def __str__(self):
+        return f"{self.title} - {self.grade}"
+
+class Schedule(models.Model):
+    section = models.OneToOneField(StudentSection, on_delete=models.CASCADE, related_name='sched_section')
+    schedule_file = models.FileField(upload_to=f'media/schedules/', max_length=255)
+
+    def __str__(self):
+        return f"{self.section} Schedule"
 

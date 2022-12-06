@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'sjlshs_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'student_portal',
-        'USER': 'root',
-        'PASSWORD': 'magnusholmes',
-        'HOST': '127.0.0.1',
+        'NAME': 'Student_Portal',
+        'USER': 'dimaSalang',
+        'PASSWORD': 'midnightbrownies',
+        'HOST': 'dimaSalang.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }

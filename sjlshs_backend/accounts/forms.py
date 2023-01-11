@@ -1,7 +1,8 @@
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import StudentUser
+from .models import StudentUser, Db_Students
+from django.forms import ModelForm
 
 class CustomCreationForm(UserCreationForm):
     
@@ -14,9 +15,18 @@ class CustomCreationForm(UserCreationForm):
                 'placeholder': 'YYYY-MM-DD'
             })
         }
+
+        
     
 class CustomerUserChangeForm(UserChangeForm):
 
     class Meta:
         model = StudentUser
-        fields = ('lrn', 'last_name', 'first_name', 'email', 'birthday', 'grade_year')
+        fields = ('lrn', 'last_name', 'first_name', 'email', 'birthday', 'grade_year', 'strand')
+
+
+
+class StudentInfoForm(ModelForm):
+    class Meta:
+        model = StudentUser
+        fields = 'lrn', 'last_name', 'first_name', 'age', 'birthday', 'email', 'grade_year', 'section', 'strand'

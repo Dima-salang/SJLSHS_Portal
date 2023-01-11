@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.conf import settings
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,7 @@ SECRET_KEY = 'django-insecure-uzp0h5*%j0f$2tg-tx%%_v&jn_*hg*_qh$@a000!0_fmf*_uey
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -35,6 +37,9 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+    'dal',
+    'dal_select2',
+    'adminlte3_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,10 +50,17 @@ INSTALLED_APPS = [
     # third-party
     'crispy_forms',
     'crispy_bootstrap5',
+    'postman',
+    'ajax_select',
+    'adminlte3',
+
+
 
     # own
     'std_portal',
     'accounts',
+    'Grades',
+    'subjects',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +78,7 @@ ROOT_URLCONF = 'sjlshs_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates/MFSPS/HTML")],
+        'DIRS': [os.path.join(BASE_DIR, "templates/MFSPS/HTML"), os.path.join(BASE_DIR, "postman/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,9 +101,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'Student_Portal',
-        'USER': 'dimaSalang',
-        'PASSWORD': 'midnightbrownies',
-        'HOST': 'dimaSalang.mysql.pythonanywhere-services.com',
+        'USER': 'root',
+        'PASSWORD': 'magnusholmes',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
@@ -138,7 +150,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -153,3 +165,24 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 AUTH_USER_MODEL = 'accounts.StudentUser'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = 'magnusholmes1026@gmail.com'
+EMAIL_HOST_PASSWORD = 'w1aI20OVpQfHBZcd'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# POSTMAN
+
+AJAX_LOOKUP_CHANNELS = {
+    'postman_users': dict(model='accounts.StudentUser', search_field='username')
+}
+
+POSTMAN_AUTOCOMPLETER_APP = {
+     'name': 'ajax_select',  # default is 'ajax_select'
+     'field': 'AutoCompleteField',  # default is 'AutoCompleteField'
+     'arg_name': 'channel',  # default is 'channel'
+     'arg_default': 'postman_users',  # no default, mandatory to enable the feature
+}

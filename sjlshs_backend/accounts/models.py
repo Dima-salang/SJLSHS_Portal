@@ -1,8 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+
 
 
 # Create your models here.
+
+class TrackAndStrand(models.Model):
+    strand = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.strand
 
 class StudentYear(models.Model):
     Grade_Year = models.PositiveIntegerField()
@@ -14,19 +22,42 @@ class StudentYear(models.Model):
 class StudentSection(models.Model):
     section_id = models.IntegerField()
     section = models.CharField(max_length=20)
-    section_adviser = models.ForeignKey('TeacherUser', null=True, on_delete=models.SET_NULL, blank=True)
+    section_adviser = models.ForeignKey('TeacherUser', null=True,
+    on_delete=models.SET_NULL, blank=True)
+    room_num = models.SmallIntegerField(blank=True)
 
     def __str__(self):
         return self.section
 
 class Subject(models.Model):
     subject_matter = models.CharField(max_length=50)
-    grade_year = models.ForeignKey(StudentYear, null=True, on_delete=models.SET_NULL)
+    grade_year = models.ForeignKey(StudentYear, null=True,
+    on_delete=models.SET_NULL)
 
     def __str__(self):
         return f"{self.subject_matter} - {self.grade_year}"
 
+
+
+class Db_Students(models.Model):
+
+    lrn = models.PositiveBigIntegerField()
+    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    age = models.PositiveIntegerField(default=0)
+    strand = models.ForeignKey(TrackAndStrand, null=True, on_delete=models.SET_NULL)
+    email = models.EmailField()
+    birthday = models.DateField()
+    grade_year = models.ForeignKey(StudentYear, null=True, on_delete=models.SET_NULL)
+    section = models.ForeignKey(StudentSection, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f"{self.lrn} - {self.last_name}, {self.first_name} ({self.section})"
+
 class StudentUser(AbstractUser):
+
+    queryset = Db_Students.objects.all()
+
     lrn = models.PositiveBigIntegerField()
     last_name = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
@@ -35,12 +66,12 @@ class StudentUser(AbstractUser):
     birthday = models.DateField()
     grade_year = models.ForeignKey(StudentYear, null=True, on_delete=models.SET_NULL)
     section = models.ForeignKey(StudentSection, null=True, on_delete=models.SET_NULL)
+    strand =models.ForeignKey(TrackAndStrand, null=True, on_delete=models.SET_NULL)
 
-    REQUIRED_FIELDS = ['lrn', 'age', 'email']
-
+    REQUIRED_FIELDS = ['lrn', 'age', 'email', 'birthday']
+                
     def __str__(self):
         return f"{self.lrn} - {self.last_name}, {self.first_name} ({self.section})"
-
 
 class TeacherUser(models.Model):
     teacher_id = models.PositiveSmallIntegerField()
@@ -53,6 +84,10 @@ class TeacherUser(models.Model):
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"
+
+
+
+
 
 
 

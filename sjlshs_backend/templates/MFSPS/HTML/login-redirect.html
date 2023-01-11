@@ -11,11 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
         
-    <link href="{% static 'CSS/bootstrap-5.2.2-dist/css/bootstrap.min.css' %}">
+    <link  rel='stylesheet' href="{% static 'CSS/bootstrap-5.2.2-dist/bootstrap-5.2.2-dist/css/bootstrap.min.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">   
     <link  rel="stylesheet" href="{% static 'CSS/design.css' %}">
-    <script src="{% static 'CSS/bootstrap-5.2.20dist/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+   
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,7 +51,7 @@
                 <a href="{% url 'portal-personal'%}">
                 <div class="card w-75 mx-auto redirect" id="redirect-info">
                     <div class="card-body">
-                        <h1 class="card-title">Student Information</h1>
+                        <h1 class="card-title">Student's Master File</h1>
                         <p>See important information about you</p>
                     </div>
                 </div>
@@ -61,10 +60,10 @@
         </div>
         <div class="row">
             <div class="col">
-                <a href="{% url 'portal-modules'%}">
+                <a href="{% url 'portal-module-redirect'%}">
                 <div class="card w-75 mx-auto redirect" id="redirect-modules">
                     <div class="card-body">
-                        <h1 class="card-title">Modules</h1>
+                        <h1 class="card-title">Module Repository</h1>
                         <p>Download resource materials</p>
                     </div>
                 </div>
@@ -84,7 +83,7 @@
                 <a href="{% url 'portal-grade' %}">
                 <div class="card w-75 mx-auto redirect" id="redirect-grades">
                     <div class="card-body">
-                        <h1 class="card-title">Grades</h1>
+                        <h1 class="card-title">Student Evaluation</h1>
                         <p>See your academic grades</p>
                     </div>
                 </div>
@@ -92,6 +91,8 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'CSS/bootstrap-5.2.2-dist/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     
 </body>
 </html>

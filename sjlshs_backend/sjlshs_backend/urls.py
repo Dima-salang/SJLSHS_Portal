@@ -17,13 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from ajax_select import urls as ajax_select_urls
 
 urlpatterns = [ 
     path('admin/', admin.site.urls),
     path('', include('std_portal.urls')),
+    path('', include('Grades.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
-    path('/', include('django.contrib.auth.urls'))
+    path('/', include('django.contrib.auth.urls')),
+    path('subjects/', include('subjects.urls')),
+    path('messages/', include('postman.urls', namespace='postman')),
+    path(r'^ajax_select/', include(ajax_select_urls)),
 ]
 
 if settings.DEBUG:

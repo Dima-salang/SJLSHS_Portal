@@ -1,7 +1,6 @@
 body, html {
     margin: 0 0 0 0;
     font-family: 'Open Sans', sans-serif;
-    width: 100%;
 }
 
 #home-navigation a {
@@ -77,13 +76,9 @@ body, html {
 
 #news-headlines1{
     margin-top: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
-
-.card{
-    margin-top: 20px;
-}
 
 #news-card-1 {
     margin-bottom: 100px;
@@ -95,6 +90,7 @@ body, html {
 #news-card-1:hover{
     background-color:#0c3483;
     color: white;
+    transform: scale(1.1);
 }
 
 #news-card-2 {
@@ -107,6 +103,7 @@ body, html {
 #news-card-2:hover{
     background-color:#0c3483;
     color: white;
+    transform: scale(1.1);
 }
 
 #news-card-3 {
@@ -119,12 +116,186 @@ body, html {
 #news-card-3:hover{
     background-color:#0c3483;
     color: white;
+    transform: scale(1.1);
 }
 
 #news-btn {
     margin-right: auto;
     margin-left: auto;
 }
+
+.news-card-img {
+    object-fit: contain;
+}
+
+@media screen and (min-width: 476px) {
+    .portal-box {
+        grid-template-rows: 1fr 1fr 1fr;
+        margin-right: 20%;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 50px 20px 100px 20px;
+    }
+}
+
+#student-portal {
+    background-image: url("../images/portal-collage.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.portal-box {
+    grid-template-rows: 1fr 1fr 1fr;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 50px 20px 100px 20px;
+}
+
+#btn-portal {
+    margin-top: 20px;
+}
+
+#btn-portal2 {
+    margin-top: 20px;
+}
+
+#portal-redirect-bg {
+    background-image: url('../images/portal-bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+#stem-title, #humss-title, #abm-title, #tvl-title {
+    font-size: 50px;
+}
+
+#tracks-card1 {
+    background-image: linear-gradient(to right, #8360c3, #2ebf91);
+    margin-top: 0;
+}
+
+#tracks-card2 {
+    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+}
+
+#club2, #club3, #club4, #club5 {
+    width: 25%;
+}
+
+#club2, #club4 {
+    margin-left: auto;
+}
+
+#club3, #club5 {
+    margin-right: auto;
+}
+
+
+
+.hover-img {
+    background-color: #000;
+    color: #fff;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 50%;
+  }
+
+  
+  .hover-img * {
+    box-sizing: border-box;
+    transition: all 0.45s ease;
+  }
+  
+  .hover-img::before,
+  .hover-img::after {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 32px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 32px solid rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    transition: all 0.3s ease;
+    z-index: 1;
+    opacity: 0;
+    transform: scaleY(2);
+  }
+  
+  .hover-img img {
+    vertical-align: top;
+    max-width: 100%;
+    backface-visibility: hidden;
+  }
+  
+  .hover-img figcaption {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.1em;
+    opacity: 0;
+    z-index: 2;
+    transition-delay: 0.1s;
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  .hover-img:hover::before,
+  .hover-img:hover::after {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  .hover-img:hover > img {
+    opacity: 0.7;
+  }
+  
+  .hover-img:hover figcaption {
+    opacity: 1;
+  }
+
+#sch-orgs-head {
+    font-size: 60px;
+    font-weight: 800;
+    font-family: 'Merriweather', serif;
+    margin-top: 50px;
+}
+
+#sch-orgs-subtitle {
+    font-size: 30px;
+}
+
+#yes-o_logo {
+    margin-left: 50px;
+}
+
+#yrc-logo {
+   
+    margin-left: 50px;
+}
+
+#bkd-logo {
+    
+    margin-left: 50px;
+}
+
+#ac_logo {
+    margin-left: 50px;
+}
+
 
 
 #tracks-strands img{
@@ -167,6 +338,20 @@ body, html {
     font-size: 30px;
 }
 
+
+#about-school-img {
+    object-fit: cover;
+    width: 700px;
+    height: 500px;
+}
+
+#about-school-h1{
+    font-family: 'Merriweather', serif;
+    font-weight: 800;
+    font-size: 56px;
+    margin-top: 20px;
+}
+
 #contacts {
     background-color: #073b4c;
     color: whitesmoke;
@@ -206,7 +391,7 @@ body, html {
     grid-template-rows: 1fr 1fr 1fr;
     border: 1px solid black;
     border-radius: 10px 10px;
-    margin: 100px 20% 20% 20%;
+    margin: 50px 20% 20% 20%;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px 20px 20px 20px;
 }
@@ -283,16 +468,19 @@ body, html {
     border-radius: 15px;
     box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
     height: 100%;
+    margin-bottom: 20px;
 }
 
 #dashboard-grades {
     border-radius: 15px;
     box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+    margin-top: 20px;
 }
 
 #dashboard-student-info {
     border-radius: 15px;
     box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+    margin-top: 20px;
 }
 
 #dashboard-grades2 {
@@ -359,11 +547,6 @@ body {
 }
 
 
-
-
-
-
-
 /* PORTAL GRADES */
 
 #portal-grades-row1 {
@@ -385,7 +568,35 @@ body {
     display: flex;
 }
 
+
+
+
+/* PORTAL-SCHED */
+#sched-image {
+    width: 1000px;
+}
+
 #portal-sched-row1 {
     height: 100%;
     display: flex;
+}
+
+
+/* PORTAL-MODULE-REDIRECT */
+
+#module-heading {
+    font-family: 'Merriweather', serif;
+    font-weight: 800;
+    font-size: 60px;
+    margin-top: 50px;
+}
+
+#module-subtitle {
+    font-size: 30px;
+}
+
+/* PORTAL-MODULE */
+
+#module-book {
+    object-fit: contain;
 }

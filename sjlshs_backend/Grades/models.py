@@ -4,6 +4,20 @@ from subjects.models import CoreSubjects, SpecializedSubjects
 
 # Create your models here.
 
+
+
+class GradeTest(models.Model):
+    PR2 = models.SmallIntegerField(default=0)
+    CPAR = models.SmallIntegerField(default=0)
+    PHILOSOPHY = models.SmallIntegerField(default=0)
+    UCSP = models.SmallIntegerField(default=0)
+    EAPP = models.SmallIntegerField(default=0)
+    SPECC = models.SmallIntegerField(default=0)
+    SPECC2 = models.SmallIntegerField(default=0)
+    PE = models.SmallIntegerField(default=0)
+
+    lrn = models.CharField(max_length=15)
+
 class GradePost(models.Model):
     sub1 = models.ForeignKey(CoreSubjects, null=True, blank=True, on_delete=models.SET_NULL, related_name='sub1')
     sub2 = models.ForeignKey(CoreSubjects, null=True, blank=True, on_delete=models.SET_NULL, related_name='sub2')

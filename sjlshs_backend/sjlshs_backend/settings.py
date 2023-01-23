@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'postman',
     'ajax_select',
     'adminlte3',
+    'import_export',
+    'chatterbot.ext.django_chatterbot',
+    'django.chatbot',
 
 
 
@@ -186,3 +189,18 @@ POSTMAN_AUTOCOMPLETER_APP = {
      'arg_name': 'channel',  # default is 'channel'
      'arg_default': 'postman_users',  # no default, mandatory to enable the feature
 }
+
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+
+CHATTERBOT = {
+    'name' : 'LiText Assistant',
+    'logic adapters' : [
+        'chatterbot.logic.BestMatch'
+    ]
+}
+
+
+CHATBOT_TEMPLATE = "portal-home.html/"
+START_MESSAGE = "Welcome to ChatBotAI"

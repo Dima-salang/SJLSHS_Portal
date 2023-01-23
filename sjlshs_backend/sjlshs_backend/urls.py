@@ -18,9 +18,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from ajax_select import urls as ajax_select_urls
+from accounts.admin import teacher_site
 
 urlpatterns = [ 
     path('admin/', admin.site.urls),
+    path('teacher/admin', teacher_site.urls),
     path('', include('std_portal.urls')),
     path('', include('Grades.urls')),
     path('accounts/', include('django.contrib.auth.urls')),

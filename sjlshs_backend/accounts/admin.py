@@ -2,6 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomCreationForm, CustomerUserChangeForm, UserCreationForm
 from .models import *
+from Grades.models import *
+from std_portal.models import *
+from std_portal.admin import PostAdmin
+from postman.models import Message, PendingMessage
+from postman.admin import MessageAdmin, PendingMessageAdmin
+
 
 fields = list(UserAdmin.fieldsets)
 fields[0] = (None, {'fields': ('lrn', 'username', 'password', 'birthday', 'section', 'grade_year', 'strand')})
@@ -28,5 +34,17 @@ admin.site.register(Db_Students)
 admin.site.register(TrackAndStrand)
 
 
+class TeacherAdminArea(admin.AdminSite):
+    site_header = "Teachers' Administration Site"
+
+
+
+teacher_site = TeacherAdminArea(name="TeacherAdminSite")
+teacher_site.register(StudentUser, CustomAdmin)
+teacher_site.register(GradePost)
+teacher_site.register(Post, PostAdmin)
+teacher_site.register(Schedule)
+teacher_site.register(Message, MessageAdmin)
+teacher_site.register(PendingMessage, PendingMessageAdmin)
 
 

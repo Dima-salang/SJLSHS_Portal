@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'adminlte3',
     'import_export',
     'chatterbot.ext.django_chatterbot',
-    'django.chatbot',
 
 
 

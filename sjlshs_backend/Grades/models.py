@@ -7,6 +7,8 @@ from subjects.models import CoreSubjects, SpecializedSubjects
 
 
 class GradeTest(models.Model):
+    last_name = models.CharField(max_length=255, null=True)
+    first_name = models.CharField(max_length=255, null=True)
     PR2 = models.SmallIntegerField(default=0)
     CPAR = models.SmallIntegerField(default=0)
     PHILOSOPHY = models.SmallIntegerField(default=0)
@@ -17,6 +19,9 @@ class GradeTest(models.Model):
     PE = models.SmallIntegerField(default=0)
 
     lrn = models.CharField(max_length=15)
+
+    def __str__(self):
+        return f"{self.last_name} - {self.lrn}"
 
 class GradePost(models.Model):
     sub1 = models.ForeignKey(CoreSubjects, null=True, blank=True, on_delete=models.SET_NULL, related_name='sub1')

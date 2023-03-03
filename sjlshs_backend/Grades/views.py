@@ -10,12 +10,14 @@ def GradeView(request):
     grades2nd = GradePost2nd.objects.all()
     grades3rd = GradePost3rd.objects.all()
     grades4th = GradePost4th.objects.all()
+    gradetest = GradeTest.objects.all()
 
     grades = {
         'grades1st' : grades1st,
         'grades2nd' : grades2nd,
         'grades3rd' : grades3rd,
-        'grades4th' : grades4th
+        'grades4th' : grades4th,
+        'gradetest' : gradetest
     }
 
     return render(request, 'portal-grades.html', grades)

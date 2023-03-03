@@ -2,25 +2,28 @@ from django.contrib import admin
 from .models import *
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
-from .resources import GradeResource
+from io import StringIO
+from django.core.files import File
+import csv
+
+
 
 # Register your models here.
 
-class GradeResource(resources.ModelResource):
+class CustomGradeResouce(resources.Resource):
+        class Meta:
+                model = GradeTest
+                exclude = ['id']
 
-    class Meta:
-        model = GradeTest
-        import_id_fields = ['lrn',]
-        exclude = ['id',]
-        export_order = ['lrn',]
+        def before_export(self, queryset, *args, **kwargs):
+                queryset = GradeTest.objects.none
+                return queryset
 
 
 
 class GradeAdmin(ImportExportModelAdmin):
-        resouce_classes = [GradeResource]
-        import_id_fields = ['lrn',]
-        exclude = ['id',]
-        pass
+        resource_class = CustomGradeResouce
+        
 
 
 
@@ -30,4 +33,5 @@ admin.site.register(GradePost2nd)
 admin.site.register(GradePost3rd)
 admin.site.register(GradePost4th)
 admin.site.register(GradeTest, GradeAdmin)
+
 

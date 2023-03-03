@@ -310,6 +310,7 @@ body, html {
 }
 
 
+
 #tvl-subtitle, #stem-subtitle,
 #humss-subtitle, #abm-subtitle {
     text-shadow: 5px 5px 10px black;
@@ -397,6 +398,8 @@ body, html {
 }
 
 /* LOGIN-REDIRECT */
+
+
 
 #portal-redirect-body {
     background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);

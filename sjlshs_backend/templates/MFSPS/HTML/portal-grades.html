@@ -64,7 +64,10 @@
                         <h3>{{user.lrn}} - {{ user.last_name}}, {{user.first_name}} ({{user.section}} )</h3>
                         <h1>1st Semester 1st Quarter Grades</h1>
                     </div>
+                    
                     <div class="card-body">
+                        {% for grade in gradetest %}
+                        {% if user.lrn == grade.lrn %}
                         <table class="table">
                             <thead class="table-dark">
                                 <tr>
@@ -79,59 +82,59 @@
                             </thead>
                             <tbody>
                                     <tr>
-                                        <td>{{user.GradePost.sub1}}</td>
+                                        <td>Practical Research 2</td>
                                         <td>1</td>
-                                        <td>{{user.GradePost.grade_sub1}}</td>
+                                        <td>{{grade.PR2}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
-                                        <td>{{user.GradePost.sub2}}</td>
+                                        <td>Contemporary Philippine Arts</td>
                                         <td>1</td>
-                                        <td>{{user.GradePost.grade_sub2}}</td>
+                                        <td>{{grade.CPAR}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
-                                        <td>{{user.GradePost.sub3}}</td>
+                                        <td>Philosophy</td>
                                         <td>1</td>
-                                        <td>{{user.GradePost.grade_sub3}}</td>
+                                        <td>{{grade.PHILOSOPHY}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
-                                        <td>{{user.GradePost.sub4}}</td>
+                                        <td>Understanding Culture, Society, and Politics</td>
                                         <td>1</td>
-                                        <td>{{user.GradePost.grade_sub4}}</td>
+                                        <td>{{grade.UCSP}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
-                                        <td>{{user.GradePost.sub5}}</td>
+                                        <td>EAPP</td>
                                         <td>1</td>
-                                        <td>{{user.GradePost.grade_sub5}}</td>
+                                        <td>{{grade.EAPP}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
-                                        <td>{{user.GradePost.sub6}}</td>
+                                        <td>Programming</td>
                                         <td>1</td>
-                                        <td>{{user.GradePost.grade_sub6}}</td>
+                                        <td>{{grade.SPECC}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
-                                        <td>{{user.GradePost.sub7}}</td>
+                                        <td>Programming</td>
                                         <td>1</td>
-                                        <td>{{user.GradePost.grade_sub7}}</td>
+                                        <td>{{grade.SPECC2}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
-                                        <td>{{user.GradePost.sub8}}</td>
+                                        <td>Physical Education</td>
                                         <td>1</td>
-                                        <td>{{user.GradePost.grade_sub8}}</td>
+                                        <td>{{grade.PE}}</td>
                                         <td>N/A</td>
                                     </tr>
-                                
-    
                             </tbody>
                         </table>
                     </div>
                 </div>
+                {% endif %}
+                {% endfor %}
                 
                 <div class="card">
                     <div class="card-header">

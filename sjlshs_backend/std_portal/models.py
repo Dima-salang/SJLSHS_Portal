@@ -9,7 +9,7 @@ import math
 # Create your models here.
 
 class Post(models.Model):
-    Author = models.CharField(max_length=50, null=True, editable=True)
+    Author = models.ForeignKey(TeacherUser, null=True, on_delete=models.CASCADE)
     Title = models.CharField(max_length=50)
     Body = models.TextField(null=True)
     Section = models.ForeignKey(StudentSection,

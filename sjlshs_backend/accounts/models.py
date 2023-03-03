@@ -41,7 +41,7 @@ class Subject(models.Model):
 
 class Db_Students(models.Model):
 
-    lrn = models.PositiveBigIntegerField()
+    lrn = models.CharField(max_length=255)
     last_name = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     age = models.PositiveIntegerField(default=0)
@@ -58,7 +58,7 @@ class StudentUser(AbstractUser):
 
     queryset = Db_Students.objects.all()
 
-    lrn = models.PositiveBigIntegerField()
+    lrn = models.CharField(max_length=15)
     last_name = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     age = models.PositiveIntegerField(default=0)

@@ -10,6 +10,7 @@
 
 {% endblock %}
 {% block content %}
+<div class="content-wrapper">
 <div id="postman">
 <h1>{% block pm_write_title %}{% endblock %}</h1>
 <p>Refer to the table below for the available teachers to message.<br>
@@ -19,6 +20,9 @@
 <table>
 {% block pm_write_recipient %}{% endblock %}
 {{form|crispy}}
+
+
+
 </table>
 <button type="submit" class="pm_btn pm_btn-send btn btn-primary">{% trans "Send" %}</button>
 </form>
@@ -40,5 +44,6 @@
     </tbody>
 </table>
 
+</div>
 </div>
 {% endblock %}

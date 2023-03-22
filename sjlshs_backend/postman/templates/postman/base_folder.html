@@ -10,15 +10,16 @@ If the real implementation is to be used, just make sure that 'dj_pagination' is
 in the INSTALLED_APPS setting.
 {% endcomment %}
 {% block content %}
+<div class="content-wrapper">
 <div id="postman">
    <link type="text/css" media="all" rel="stylesheet" href="{% static 'CSS/postman.css' %}">
    {% block postman_menu %}
    <ul id="postman_menu">{% postman_unread as unread_count %}
-    <li><a href="{% url 'postman:inbox' %}">&raquo;&nbsp;{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></li>
-    <li><a href="{% url 'postman:sent' %}">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
-    <li><a href="{% url 'postman:write' %}">&raquo;&nbsp;{% trans "Write" %}</a></li>
-    <li><a href="{% url 'postman:archives' %}">&raquo;&nbsp;{% trans "Archives" %}</a></li>
-    <li><a href="{% url 'postman:trash' %}">&raquo;&nbsp;{% trans "Trash" %}</a></li>
+    <button class="btn btn-primary"><li><a href="{% url 'postman:inbox' %}" class="text-white">&raquo;&nbsp;{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></li></button>
+    <button class="btn btn-primary"><li><a href="{% url 'postman:sent' %}" class="text-white">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li></button>
+    <button class="btn btn-primary"><li><a href="{% url 'postman:write' %}" class="text-white">&raquo;&nbsp;{% trans "Write" %}</a></li></button>
+    <button class="btn btn-primary"><li><a href="{% url 'postman:archives' %}" class="text-white">&raquo;&nbsp;{% trans "Archives" %}</a></li></button>
+    <button class="btn btn-primary"><li><a href="{% url 'postman:trash' %}" class="text-white">&raquo;&nbsp;{% trans "Trash" %}</a></li></button>
    </ul>
    {% endblock %}
 <h1>{% block pm_folder_title %}{% endblock %}</h1>
@@ -73,6 +74,6 @@ in the INSTALLED_APPS setting.
 {% endif %}
 {% block pm_footer_info %}{% endblock %}
 </div>
-
+</div>
 
 {% endblock content %}

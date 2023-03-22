@@ -28,13 +28,35 @@ SECRET_KEY = 'django-insecure-uzp0h5*%j0f$2tg-tx%%_v&jn_*hg*_qh$@a000!0_fmf*_uey
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'https://8392-180-191-67-11.ap.ngrok.io']
 
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8000/'
+]
 
+CSRF_TRUSTED_ORIGINS = ['https://8392-180-191-67-11.ap.ngrok.io']
 # Application definition
 
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.history.HistoryPanel',
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'debug_toolbar.panels.profiling.ProfilingPanel',
+]
 
 INSTALLED_APPS = [
     'dal',
@@ -54,15 +76,39 @@ INSTALLED_APPS = [
     'ajax_select',
     'adminlte3',
     'import_export',
-    'chatterbot.ext.django_chatterbot',
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_email',
+    'two_factor',
+    'two_factor.plugins.email',
+    'debug_toolbar',
+    'sorl.thumbnail', 
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.contrib.settings',
+    'wagtail',
+
+    'modelcluster',
+    'taggit',   
 
 
 
     # own
     'std_portal',
     'accounts',
-    'Grades',
+    'Grades_11',
+    'Grades_12',
     'subjects',
+    'wagtailApp',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +119,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_otp.middleware.OTPMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'sjlshs_backend.urls'
@@ -102,7 +151,7 @@ WSGI_APPLICATION = 'sjlshs_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'Student_Portal',
+        'NAME': 'student_portal_re',
         'USER': 'root',
         'PASSWORD': 'magnusholmes',
         'HOST': 'localhost',
@@ -129,6 +178,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [    'accounts.auth_backends.EmailBackend',
+                               'django.contrib.auth.backends.ModelBackend',]
 
 
 # Internationalization
@@ -145,30 +196,32 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/root')
+STATIC_URL = '/static/root/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'),]
 
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-LOGIN_REDIRECT_URL = 'login-redirect'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'two_factor:login'
+LOGIN_REDIRECT_URL = 'login-redirect'
+
+TWO_FACTOR_LOGIN_REDIRECT_URL = 'login-redirect'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 AUTH_USER_MODEL = 'accounts.StudentUser'
 
-
+TWO_FACTOR_OTP_GATEWAY = 'django_otp.plugins.otp_email.EmailPlugin'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-relay.sendinblue.com'
 EMAIL_HOST_USER = 'magnusholmes1026@gmail.com'
@@ -193,13 +246,4 @@ POSTMAN_AUTOCOMPLETER_APP = {
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 
-CHATTERBOT = {
-    'name' : 'LiText Assistant',
-    'logic adapters' : [
-        'chatterbot.logic.BestMatch'
-    ]
-}
-
-
-CHATBOT_TEMPLATE = "portal-home.html/"
-START_MESSAGE = "Welcome to ChatBotAI"
+WAGTAIL_SITE_NAME = 'ADMIN CONTENT CREATION'

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
+{% extends 'portal-base.html' %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,126 +10,91 @@
 </head>
 <body>
     {% block content %}
-    <nav class="navbar navbar-expand-lg bg-dark sticky-top" id="home-navigation">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Hello, {{user.first_name}}</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'portal-home' %}">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-sched' %}">Class Schedule</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-grade' %}">Student Evaluation</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-personal' %}">Student Master File</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-announcements' %}">Announcements</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-module-redirect' %}">Module Repository</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'postman:inbox' %}">Messages</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-              </li>
-              {% endif %}
-            </ul>
+    <div class="content-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center mb-5">Student Master File</h1>
           </div>
         </div>
-      </nav>
-            <div class="col">
-              <h1>Student Master File</h1>
-              <table class="table">
-                <thead class="table-dark">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-5">
+              <div class="card-header bg-primary text-white">
+                Personal Information
+              </div>
+              <div class="card-body">
+                <table class="table table-borderless">
+                  <tbody>
                     <tr>
-                        <th scope="col" colspan="2" class="text-center">Personal Information</th>
+                      <td>Last Name</td>
+                      <td>{{ user.last_name }}</td>
                     </tr>
                     <tr>
-                        <th scope="col" class="text-center w-50">Description</th>
-                        <th scope="col" class="text-center w-50">Information</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Last Name</td>
-                        <td>{{ user.last_name}}</td>
+                      <td>First Name</td>
+                      <td>{{ user.first_name }}</td>
                     </tr>
                     <tr>
-                        <td>First Name</td>
-                        <td>{{ user.first_name}}</td>
+                      <td>LRN</td>
+                      <td>{{ user.lrn }}</td>
                     </tr>
                     <tr>
-                        <td>LRN</td>
-                        <td>{{user.lrn}}</td>
+                      <td>Email</td>
+                      <td>{{ user.email }}</td>
                     </tr>
                     <tr>
-                        <td>Email</td>
-                        <td>{{user.email}}</td>
+                      <td>Birthday</td>
+                      <td>{{ user.birthday }}</td>
                     </tr>
                     <tr>
-                        <td>Birthday</td>
-                        <td>{{user.birthday}}</td>
+                      <td>Age</td>
+                      <td>{{ user.age }}</td>
                     </tr>
-                    <tr>
-                        <td>Age</td>
-                        <td>{{user.age}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table">
-              <thead class="table-dark">
-                  <tr>
-                      <th scope="col" colspan="2" class="text-center">School-Related Information</th>
-                  </tr>
-                  <tr>
-                      <th scope="col" class="text-center w-50">Description</th>
-                      <th scope="col" class="text-center w-50">Information</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>Grade Year</td>
-                      <td>{{ user.grade_year}}</td>
-                  </tr>
-                  <tr>
-                      <td>Strand</td>
-                      <td>{{ user.strand}}</td>
-                  </tr>
-                  <tr>
-                      <td>Section</td>
-                      <td>{{ user.section}}</td>
-                  </tr>
-                  <tr>
-                      <td>Room Number</td>
-                      <td>{{ user.section.room_num}}</td>
-                  </tr>
-                  <tr>
-                      <td>Section Adviser</td>
-                      <td>{{user.section.section_adviser}}</td>
-                  </tr>
-                  <tr>
-                      <td>Adviser Contact Number</td>
-                      <td>{{user.section.section_adviser.contact_num}}</td>
-                  </tr>
-                  <tr>
-                      <td>Adviser Email</td>
-                      <td>{{user.section.section_adviser.email}}</td>
-                  </tr>
-                  
-              </tbody>
-          </table>
+                  </tbody>
+                </table>
+              </div>
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-5">
+              <div class="card-header bg-primary text-white">
+                School-Related Information
+              </div>
+              <div class="card-body">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td>Grade Year</td>
+                      <td>{{ user.grade_year }}</td>
+                    </tr>
+                    <tr>
+                      <td>Strand</td>
+                      <td>{{ user.strand }}</td>
+                    </tr>
+                    <tr>
+                      <td>Section</td>
+                      <td>{{ user.section }}</td>
+                    </tr>
+                    <tr>
+                      <td>Room Number</td>
+                      <td>{{ user.section.room_num }}</td>
+                    </tr>
+                    <tr>
+                      <td>Section Adviser</td>
+                      <td>{{ user.section.section_adviser }}</td>
+                    </tr>
+                    <tr>
+                      <td>Adviser Contact Number</td>
+                      <td>{{ user.section.section_adviser.contact_num }}</td>
+                    </tr>
+                    <tr>
+                      <td>Adviser Email</td>
+                      <td>{{ user.section.section_adviser.email }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
         

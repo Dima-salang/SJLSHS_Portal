@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row" id="row-2-school-logo">
+    <div class="col" id="col-school-logo">
+      <img class="mx-auto d-block" src="{% static 'images/sjlshs_croppedV4.png'%}">
+      <h1 id="bg-title">{{page.title}}</h1>
+    </div>
+  </div>
+  <div class="row text-center">
+    <h2>Explore our student organizations</h2>
+  </div>
+
+  {% for org_page in page.get_children %}
+    {% if org_page.slug == 'announcements' %}
+      <h3>Announcements</h3>
+      {% for post in org_page.get_children.specific %}
+        {% if forloop.counter <= 3 %}
+        <div class="list-group">
+            <a href="{{ post.url }}" class="list-group-item list-group-item-action">
+              <h4 class="list-group-item-heading">{{ post.title }}</h4>
+              <p class="list-group-item-text">{{ post.date|date:"F j, Y" }}</p>
+              <p class="list-group-item-text">{{ post.specific.body|truncatechars:50|richtext}}</p>
+            </a>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if org_page.slug == 'events' %}
+      <h3>Events</h3>
+      <div class="row">
+
+      
+      {% for post in org_page.get_children.specific %}
+        {% if forloop.counter <= 3 %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card w-100 h-100 mb-3">
+            {% image post.feed_image fill-400x400 class="card-img-top" %}
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.body|richtext|truncatechars:200}}</p>
+            </div>
+            <div class="card-footer">
+              <a href="{{ post.url }}" class="btn btn-primary">Learn more</a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if org_page.slug == 'news' %}
+      <h3>News</h3>
+      <div class="row">
+
+      
+      {% for post in org_page.get_children.specific %}
+        {% if forloop.counter <= 3 %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card mb-3">
+            {% image post.feed_image fill-400x400 class="card-img-top" %}
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.body|richtext|truncatechars:200}}</p>
+            </div>
+            <div class="card-footer">
+              <a href="{{ post.url }}" class="btn btn-primary">Learn more</a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endfor %}
+  
+</div>
+{% endblock %}

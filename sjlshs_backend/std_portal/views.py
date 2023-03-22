@@ -5,13 +5,20 @@ from accounts.models import StudentUser, Db_Students
 from .models import Post, Modules, Schedule
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
+from django_otp.decorators import otp_required
+from wagtail.models import Page
+from wagtailApp.models import ArticleIndexPage, ArticlePage
+from django.db.models import Q
 
 # Create your views here.
 from django.http import HttpResponse
 
 
+
 def home_page_view(request):
-    return render(request, "home.html", {})
+    page_articles = Page.objects.get(slug='supreme-student-government')
+    
+    return render(request, "home.html", {'page_articles': page_articles})
 
 
 class PortalHomeView(ListView):
@@ -19,9 +26,9 @@ class PortalHomeView(ListView):
     template_name = "portal-home.html"
 
 
+
 class PortalRedirectView(TemplateView):
     template_name = 'portal-redirect.html'
-
 
 def update_users(request):
     auth_checks = 0
@@ -51,6 +58,14 @@ class PortalPersonalView(TemplateView):
 class PortalAnnouncements(ListView):
     model = Post
     template_name = "portal-announcements.html"
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_superuser:
+            queryset = Post.objects.all()
+        else:
+            queryset = Post.objects.filter(Q(Section=user.section) | Q(Section=3))
+        return queryset
 
 class PortalSched(ListView):
     model = Schedule

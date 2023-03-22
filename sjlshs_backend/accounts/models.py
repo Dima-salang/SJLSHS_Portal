@@ -4,6 +4,7 @@ from django.conf import settings
 
 
 
+
 # Create your models here.
 
 class TrackAndStrand(models.Model):
@@ -24,7 +25,7 @@ class StudentSection(models.Model):
     section = models.CharField(max_length=20)
     section_adviser = models.ForeignKey('TeacherUser', null=True,
     on_delete=models.SET_NULL, blank=True)
-    room_num = models.SmallIntegerField(blank=True)
+    room_num = models.SmallIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.section
@@ -65,8 +66,8 @@ class StudentUser(AbstractUser):
     email = models.EmailField()
     birthday = models.DateField()
     grade_year = models.ForeignKey(StudentYear, null=True, on_delete=models.SET_NULL)
-    section = models.ForeignKey(StudentSection, null=True, on_delete=models.SET_NULL)
-    strand =models.ForeignKey(TrackAndStrand, null=True, on_delete=models.SET_NULL)
+    section = models.ForeignKey(StudentSection, null=True, on_delete=models.SET_NULL, blank=True)
+    strand =models.ForeignKey(TrackAndStrand, null=True, on_delete=models.SET_NULL, blank=True)
 
     REQUIRED_FIELDS = ['lrn', 'age', 'email', 'birthday']
                 
@@ -74,6 +75,7 @@ class StudentUser(AbstractUser):
         return f"{self.lrn} - {self.last_name}, {self.first_name} ({self.section})"
 
 class TeacherUser(models.Model):
+    user_field = models.OneToOneField(StudentUser, on_delete=models.CASCADE, blank=True, null=True)
     teacher_id = models.PositiveSmallIntegerField()
     last_name = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
@@ -84,6 +86,15 @@ class TeacherUser(models.Model):
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"
+    
+
+    def get_students(self):
+        sections = self.section_handle.all()
+        if sections:
+            return StudentUser.objects.filter(section__in=sections)
+        else:
+            return StudentUser.objects.none()
+
 
 
 

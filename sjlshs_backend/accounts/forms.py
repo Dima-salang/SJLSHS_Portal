@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import StudentUser, Db_Students
 from django.forms import ModelForm
+from django_otp.forms import OTPAuthenticationForm
 
 class CustomCreationForm(UserCreationForm):
     
@@ -30,3 +31,4 @@ class StudentInfoForm(ModelForm):
     class Meta:
         model = StudentUser
         fields = 'lrn', 'last_name', 'first_name', 'age', 'birthday', 'email', 'grade_year', 'section', 'strand'
+

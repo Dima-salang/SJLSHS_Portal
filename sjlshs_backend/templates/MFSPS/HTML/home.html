@@ -1,12 +1,17 @@
 
 <!DOCTYPE html>
 {% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
 {% load static %}
 <head>
     <title>SJLSHS Portal</title>
 </head>
 <body>
-    {% block content %}
+
+  
+
+   {% block content %}
     <div class="container-fluid">
         <div class="row" id="row-2-school-logo">
             <div class="col" id="col-school-logo">
@@ -14,36 +19,79 @@
                 <h1 id="bg-title">San Jose Litex Senior High School</h1>
             </div>
         </div>
-        <div class="row">
-          <bold><h1 class="text-center" id="news-h1">School News</h1></bold>
-          <p class="text-center" id="news-descrip">Stories about the school, its clubs, and students</p>
-          <div class="col-xl-4 col-xs-6">
-            <div class="card w-75 mx-auto" id="news-card-1">
-              <img src="{% static 'images/galaw-pilipinas.jpg'%}" class="card-img-top" id="news-card-img1" style="object-fit: contain;">
-              <div class="card-body">
-                <h5 class="card-title">Galaw Pilipinas Day</h5><hr>
-                <p class="card-text">On some day, the students of SJLSHS danced to Galaw Pilipinas</p>
+
+        <section id="announcements">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <h1 class="text-center mb-4" id="school-announcements">Announcements</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div id="announcement-carousel" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    {% for article in page_articles.get_children %}
+                      {% if article.slug == 'announcements'%}
+                      {% for announcement_post in article.get_children.specific %}
+                      {% if forloop.counter <= 5 %}
+                    <div class="carousel-item active">
+                      <div class="announcement-card">
+                        <h2 class="announcement-title">{{announcement_post.title}}</h2>
+                        <p class="announcement-meta">{{announcement_post.date}}</p>
+                        <p class="announcement-snippet">{{announcement_post.body|truncatechars:100|richtext}}</p>
+                        <a href="{{announcement_post.url}}" class="btn btn-primary">Read More</a>
+                      </div>
+                    </div>
+                    {% endif %}
+                    {%endfor%}
+                    {% endif%}
+                  {% endfor %}
+                  <button class="carousel-control-prev" type="button" data-bs-target="#announcement-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#announcement-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-4 col-xs-6">
-            <div class="card w-75 mx-auto" id="news-card-2">
-              <img src="{% static 'images/un-pageant.jpg'%}" class="card-img-top img-fluid" id="news-card-img">
-              <div class="card-body">
-                <h5 class="card-title">United Nations Pageant</h5><hr>
-                <p class="card-text">On some day, the students of SJLSHS danced to Galaw Pilipinas</p>
+        </section>
+        
+        <section id="news">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <h1 class="text-center mb-4" id="news-h1">School News</h1>
+                <p class="text-center mb-5" id="news-descrip">Get the latest news about SJLSHS and its students.</p>
               </div>
             </div>
-          </div>
-          <div class="col-xl-4 col-xs-6">
-            <div class="card w-75 mx-auto" id="news-card-3">
-              <img src="{% static 'images/bkd-week.jpg'%}" class="card-img-top img-fluid" id="news-card-img">
-              <div class="card-body">
-                <h5 class="card-title">Barkada Kontra Droga Week</h5><hr>
-                <p class="card-text">On some day, the students of SJLSHS danced to Galaw Pilipinas</p>
+            <div class="row">
+              {% for article in page_articles.get_children %}
+              {% if article.slug == 'news'%}
+                {% for news_post in article.get_children.specific %}
+                {% if forloop.counter <= 3 %}
+              <div class="col-md-4 mb-4">
+                <div class="card">
+                  {% image news_post.feed_image fill-400x400 class="card-img-top"%}
+                  <div class="card-body">
+                    <h4 class="card-title mb-2">{{ news_post.title}}</h4>
+                    <p class="card-text mb-3">{{news_post.body|truncatechars:200|richtext}}</p>
+                    <a href="{{news_post.url}}" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
               </div>
+              {%endif%}
+              {%endfor%}
+            {%endif%}
+            {%endfor%}
             </div>
           </div>
+        </section>
+        
           <div class="row gx-0" id="student-portal">
             <div class="col">
 
@@ -51,7 +99,7 @@
             <div class="col-lg-5 col-sm-12">
               <div class="portal-box">
                 <div class="reg-title">
-                    <img src="{%static 'images/Student_Portal-removebg-preview.png'%}" class="img-fluid">
+                    <img src="{%static 'images/std_portal_logo2.png'%}" class="img-fluid">
                 </div>
                 <div class="portal-info">
                   <p class="text-center">The SJLSHS M.A.P.S is especially created for students like you.
@@ -68,7 +116,81 @@
             </div>
           </div>
           
-        <div class="row gx-0" id="tracks-strands">
+
+          
+          <div class="container-fluid gx-0" id="tracks-strands">
+            <h1 class="text-center">Academic Offerings</h1>
+            <p class="text-center" id="offerings-subtitle">Discover the tracks and strands offered by the school</p>
+          
+            <div class="row gx-4">
+              <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                <div class="card h-100">
+                  <img src="{% static 'images/stem-img.jpg'%}" class="card-img-top" alt="STEM">
+                  <div class="card-body">
+                    <h2 class="card-title text-center">STEM</h2>
+                    <p class="card-text">The STEM strand is focused on the study of science and its related subjects, like math, technology, and engineering. It also includes coursework that can help prepare you for college-level science classes, like chemistry, physics, and biology. You'll learn how to apply critical thinking, problem-solving, and communication skills in the classroom and workplace.</p>
+                  </div>
+                  <div class="card-footer text-center">
+                    <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                <div class="card h-100">
+                  <img src="{% static 'images/abm-img.jpg'%}" class="card-img-top" alt="ABM">
+                  <div class="card-body">
+                    <h2 class="card-title text-center">ABM</h2>
+                    <p class="card-text">Students in an accountancy and business management (ABM) strand can learn a wide range of skills and knowledge that are relevant to careers in finance, business administration, and related fields. They'll develop critical thinking, problem-solving, communication, and teamwork skills, which can be useful in a variety of career paths.</p>
+                  </div>
+                  <div class="card-footer text-center">
+                    <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                <div class="card h-100">
+                  <img src="{% static 'images/humss-img.jpg'%}" class="card-img-top" alt="HUMSS">
+                  <div class="card-body">
+                    <h2 class="card-title text-center">HUMSS</h2>
+                    <p class="card-text">The humanities are a broad field of study that includes a range of disciplines that explore the human experience, including history, literature, philosophy, art, music, and culture. In the HUMSS strand, students will learn about the history and development of different cultures and societies, and the ways in which these cultures have influenced and been influenced by art, literature, and other forms of human expression.</p>
+                  </div>
+                  <div class="card-footer text-center">
+                    <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                <div class="card h-100">
+                  <img src="{% static 'images/tvl-img.jpg'%}" class="card-img-top" alt="HUMSS">
+                  <div class="card-body">
+                    <h2 class="card-title text-center">TVL</h2>
+                    <p class="card-text">The technical-vocational-livelihood (TVL) strand provides students with hands-on training and practical skills in a variety of technical and vocational fields, including culinary arts, automotive technology, computer hardware servicing, and others. Students in this strand will learn how to apply their knowledge and skills in real-world settings, preparing them for careers in the fields they choose to specialize in. The TVL strand also emphasizes the importance of entrepreneurship and the development of business skills.</p>
+                  </div>
+                  <div class="card-footer text-center">
+                    <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="col-lg-6">
+                <div class="card mb-4">
+                  <img src="{% static 'images/tvl-img.jpg'%}" class="card-img-top" alt="TVL">
+                  <div class="card-body">
+                  <h2 class="card-title text-center mb-4">TVL</h2>
+                  <p class="card-text text-center mb-5">The technical-vocational-livelihood (TVL) strand provides students with hands-on training and practical skills in a variety of technical and vocational fields, including culinary arts, automotive technology, computer hardware servicing, and others. Students in this strand will learn how to apply their knowledge and skills in real-world settings, preparing them for careers in the fields they choose to specialize in. The TVL strand also emphasizes the importance of entrepreneurship and the development of business skills.</p>
+                  <a href="{% url 'login-redirect'%}" class="btn btn-primary d-block mx-auto">Learn More</a>
+                  </div>
+                  </div>
+                  </div>
+                  
+                </div> -->
+
+
+
+        <!-- <div class="row gx-0" id="tracks-strands">
           <bold><h1 class="text-center">Academic Offerings</h1></bold>
           <p class="text-center" id="offerings-subtitle"=>Discover the tracks and strands offered by the school</p>
           <div class="row gx-0">
@@ -111,8 +233,8 @@
               </p>
               <a href="{% url 'login-redirect'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal">Learn More</button></a>
             </div>
-          </div>
-          <div class="row">
+          </div> -->
+          <!-- <div class="row">
             <div class="col">
               <h1 class="text-center">TVL</h1>
               <p class="card-text text-center">The Technical-Vocational Livelihood strand is designed to provide students with the technical skills and knowledge needed for careers in various technical and vocational fields, as well as to provide students with the necessary foundation for entrepreneurship.
@@ -125,9 +247,60 @@
               <img src="{% static 'images/stem-img.jpg'%}" width="100%", height="500px">
             </div>
           </div>
+         -->
         
+
+        <div class="container-fluid gx-0">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-md-8 col-lg-6">
+              <h1 class="text-center mb-3" id="sch-orgs-head">School Organizations</h1>
+              <p class="text-center mb-5" id="sch-orgs-subtitle">Join the campus life</p>
+            </div>
+          </div>
+          <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 col-lg-3 mb-4">
+              <figure class="hover-img">
+                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
+                <figcaption>
+                  <h3>Supreme Student Government</h3>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-md-4 col-lg-3 mb-4">
+              <figure class="hover-img">
+                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
+                <figcaption>
+                  <h3>Supreme Student Government</h3>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-md-4 col-lg-3 mb-4">
+              <figure class="hover-img">
+                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
+                <figcaption>
+                  <h3>Supreme Student Government</h3>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-md-4 col-lg-3 mb-4">
+              <figure class="hover-img">
+                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
+                <figcaption>
+                  <h3>Supreme Student Government</h3>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-md-4 col-lg-3 mb-4">
+              <figure class="hover-img">
+                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
+                <figcaption>
+                  <h3>Supreme Student Government</h3>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
-        <div class="container-fluid">
+        <!-- <div class="container-fluid">
             <div class="row">
               <bold><h1 class="text-center" id="sch-orgs-head">School Organizations</h1></bold>
               <p class="text-center" id="sch-orgs-subtitle">Join the campus life</p>
@@ -172,7 +345,7 @@
                   
                 </div>
               </div>
-        </div>
+        </div> -->
         
         <div class="row gx-0">
           <div class="enrollment-process">
@@ -182,28 +355,25 @@
           </div>
         </div>
 
-        <div class="row gx-0">
-          <div class="row">
-            <div class="about-school">
-            </div>
+        <div class="row" >
+          <div class="col-lg-6 col-md-12 about-school-image-container">
+            <img src="{% static 'images/sch-bg.jpg' %}" alt="School Background" class="about-school-image img-fluid w-100 h-100" style="object-fit: cover;">
           </div>
-          <div class="row gx-0">
-            <div class="col-6">
-              <img src="{% static 'images/sch-bg.jpg'%}" id="about-school-img" class="img-fluid">
-            </div>
-            <div class="col-6">
-              <bold><h1 class="text-center" id="about-school-h1">The School</h1></bold>
-              <p class="text-center" id="about-school-descrip">San Jose Litex Senior High School is a community of students, teachers, 
-                and parents who are committed to providing our students with the tools they need to be successful in life.
-                Our mission is to prepare students for success in school and beyond. We believe that learning should be fun, engaging, 
-                and challenging—not just something you do because it's required. We want every student to graduate from high school with
-                a solid foundation of knowledge about themselves, their world, and their future. We believe that education is not something
-                 you do once but rather something that happens every day throughout your entire life. 
-                 It's a constant process of learning new things, growing as a person, and understanding how the world works around us. 
-                 This is why SJLSHS works hard to ensure that learning is achieved.
-              </p>
-            </div>
+          <div class="col-lg-6 col-md-12 about-school-content-container">
+            <h1 class="about-school-heading text-center">Welcome to San Jose Litex Senior High School</h1>
+            <p class="about-school-description">At SJLSHS, we believe that education should be a journey of discovery and growth. Our community of students, teachers, and parents work together to provide our students with the tools they need to succeed both in and beyond the classroom. We offer a range of programs and resources designed to support our students' academic and personal growth, including:</p>
+            <ul class="about-school-list">
+              <li class="about-school-list-item">Highly qualified teachers who are dedicated to their students' success</li>
+              <li class="about-school-list-item">A challenging and engaging curriculum that prepares students for college and career</li>
+              <li class="about-school-list-item">State-of-the-art facilities and resources that promote learning and exploration</li>
+              <li class="about-school-list-item">A supportive and inclusive community that values diversity and promotes mutual respect</li>
+            </ul>
+            <p class="about-school-description">We believe that every student has the potential to achieve great things, and we are committed to helping them reach their goals. Whether you are a current student, a prospective student, or a member of our community, we invite you to explore all that SJLSHS has to offer.</p>
           </div>
+        </div>
+      
+        
+        
         <div class="row gx-0" id="contacts">
             <h1 class="text-center">Contacts</h1>
             <div class="col-4">

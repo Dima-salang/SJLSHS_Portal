@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
+{% extends 'portal-base.html' %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,48 +8,12 @@
     <title>Student Grades</title>
 </head>
 <body>
+    
+
+    
     {% block content %}
-    <nav class="navbar navbar-expand-lg bg-dark sticky-top" id="home-navigation">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Hello, {{user.first_name}}</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'portal-home' %}">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-sched' %}">Class Schedule</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-grade' %}">Student Evaluation</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-personal' %}">Student Master File</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-announcements' %}">Announcements</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'portal-module-redirect' %}">Module Repository</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'postman:inbox' %}">Messages</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      </nav>
-        
+    <div class="content-wrapper">
+
             <div class="col" id="portal-grades-col1">
                 <div class="descrip">
                     <h1>Note</h1>
@@ -59,6 +23,184 @@
                          available up to the current quarter and semester. Other grade forms <br>
                         may be left intentionally blank and are marked as None  </p>
                 </div>
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1 class="card-title">Grades for {{user.last_name}}</h1>
+                        </div>
+                        <div class="card-body">
+                            <div id="accordion" class="accordion">
+                                <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <h4 class="card-title w-100">
+                                            <button class="accordion-button btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                                Collapsible Group Item #1
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                                        <div class="card-body">
+                                            {% for grade in gradetest %}
+                        {% if user.lrn == grade.lrn %}
+                        <table class="table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col" colspan="4" class="text-center">First Semester - 1st Quarter</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Subject Description</th>
+                                    <th scope="col">Units</th>
+                                    <th scope="col">Grading Marks</th>
+                                    <th scope="col">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td>Practical Research 2</td>
+                                        <td>1</td>
+                                        <td>{{grade.PR2}}</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contemporary Philippine Arts</td>
+                                        <td>1</td>
+                                        <td>{{grade.CPAR}}</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Philosophy</td>
+                                        <td>1</td>
+                                        <td>{{grade.PHILOSOPHY}}</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Understanding Culture, Society, and Politics</td>
+                                        <td>1</td>
+                                        <td>{{grade.UCSP}}</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EAPP</td>
+                                        <td>1</td>
+                                        <td>{{grade.EAPP}}</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Programming</td>
+                                        <td>1</td>
+                                        <td>{{grade.SPECC}}</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Programming</td>
+                                        <td>1</td>
+                                        <td>{{grade.SPECC2}}</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Physical Education</td>
+                                        <td>1</td>
+                                        <td>{{grade.PE}}</td>
+                                        <td>N/A</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                        {% endif %}
+                        {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <h4 class="card-title w-100">
+                                            <button class="accordion-button collapsed btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                Collapsible Group Danger
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                                        <div class="card-body">
+                                            <table class="table">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th scope="col">Subject Description</th>
+                                                        <th scope="col">Units</th>
+                                                        <th scope="col">Grade Marks</th>
+                                                        <th scope="col">Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ user.GradePost2nd.pr2_2nd }}</td>
+                                                        <td>{{ user.GradePost2nd.cpar_2nd}}</td>
+                                                        <td>{{ user.GradePost2nd.pe_2nd}}</td>
+                                                        <td>{{ user.GradePost2nd.spec_2nd}}</td>
+                                                        <td>{{ user.GradePost2nd.ucsp_2nd}}</td>
+                                                        <td>{{ user.GradePost2nd.philo_2nd}}</td>
+                                                        <td>{{ user.GradePost2nd.eapp_2nd}}</td>
+                                                        <td>{{ user.GradePost2nd.grade_avg_2ndq}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <h4 class="card-title w-100">
+                                            <button class="accordion-button btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                Collapsible Group Item #1
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                            3
+                                            wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                            laborum
+                                            eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
+                                            nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                            nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                                            beer
+                                            farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                                            labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <h4 class="card-title w-100">
+                                            <button class="accordion-button btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                                Collapsible Group Item #1
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                            3
+                                            wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                            laborum
+                                            eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
+                                            nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                            nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                                            beer
+                                            farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                                            labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="card">
                     <div class="card-header">
                         <h3>{{user.lrn}} - {{ user.last_name}}, {{user.first_name}} ({{user.section}} )</h3>
@@ -234,6 +376,7 @@
             </div>
         </div>
     </div>
+</div>
     {% endblock %}
     
     

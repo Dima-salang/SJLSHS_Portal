@@ -5,13 +5,23 @@ from django.contrib import admin
 from .models import Post, Modules, Schedule
 
 class PostAdmin(admin.ModelAdmin):
-    def save_model(self, request, obj, instance, form, change):
+
+    exclude = ('Author',)
+    def save_model(self, request, obj, form, change):
         if not change:
-            obj.Author = request.user_id
+            obj.Author = request.user.get_full_name()
         obj.save()
 
 
-admin.site.register(Post)
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        else:
+            return qs.filter(Author=request.user)
+        
+
+admin.site.register(Post, PostAdmin)
 admin.site.register(Modules)
 admin.site.register(Schedule)
 

@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-{% extends "two_factor/core/login.html" %}
+{% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static 'CSS/design.css' %}">
-    </head>
-    {% block content %}
-    <body class="register-page">
-        
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="register-page">
+        {% block content %}
         <div class="reg-box">
             <div class="reg-title">
                 <h2>SJLSHS LOGIN</h2>
             </div>
             <div class="reg-forms">
                 <form method="post"> {% csrf_token %}
-                    {% block form %}
+                    
                     {{ form|crispy }}
                     <div class="form-group">
                         <label for="{{ form.lrn.id_for_label }}">{{ form.lrn.label }}</label>
                         {{ form.lrn }}
                     </div>
-                    {% endblock %}
+                    
                     <input type="submit" value="Log in" class="btn btn-outline-primary"/>
                 </form>
             </div>
@@ -29,7 +31,6 @@
 
             </div>
         </div>
+        {% endblock %}
     </body>
-
-    {% endblock %}
 </html>

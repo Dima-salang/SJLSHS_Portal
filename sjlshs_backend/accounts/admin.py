@@ -19,13 +19,10 @@ class StudentUserAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        print("Function called")
         if request.user.is_superuser:
-            print("returned queryset")
-            return queryset
+            return queryset.select_related('teacheruser')
         elif request.user.groups.filter(name="Teacher").exists():
-            print("returned filter queryset")
-            return request.user.teacheruser.get_students()
+            return request.user.teacheruser.get_students().select_related('teacheruser')
         else:
             return queryset.none()
 

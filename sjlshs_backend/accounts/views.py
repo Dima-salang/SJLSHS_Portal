@@ -1,21 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
+from django.http import HttpResponseRedirect
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage, send_mail
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
-from .forms import CustomCreationForm, StudentInfoForm
+from .forms import CustomCreationForm, StudentInfoForm, CustomOTPAuthenticationForm
 from .models import StudentUser
 from django.dispatch import receiver
 from django.contrib.auth import authenticate
 from django.contrib import messages
-from django_otp.forms import OTPTokenForm, OTPAuthenticationForm
+from django_otp.forms import OTPAuthenticationForm
 from django_otp import devices_for_user
-from two_factor.views import LoginView
+from two_factor.views import LoginView, OTPRequiredMixin
 # Create your views here.
 
 User = get_user_model()
@@ -96,6 +97,28 @@ def StudentInfoView(request, uid):
 
     return render(request, 'tc-student-info.html', contexts)
 
+
+class CustomOTPLogInView(OTPRequiredMixin, LoginView):
+    form_class = CustomOTPAuthenticationForm
+    template_name = 'two_factor/core/login.html'
+    otp_required_redirect = '/login/?otp_required=1'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['lrn'] = self.request.POST.get('lrn')
+        return kwargs
+
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        # Check if the user account is active
+        if not self.request.user.is_active:
+            messages.warning(self.request, 'Your account is not active yet. Please wait for the admin to activate your account.')
+            return HttpResponseRedirect(reverse('login'))
+            
+        else:
+            return super().form_valid(form)
 
 # def verify_otp(request):
 #     user = request.user

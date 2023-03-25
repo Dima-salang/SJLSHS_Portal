@@ -29,13 +29,13 @@ SECRET_KEY = 'django-insecure-uzp0h5*%j0f$2tg-tx%%_v&jn_*hg*_qh$@a000!0_fmf*_uey
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'https://8392-180-191-67-11.ap.ngrok.io']
+ALLOWED_HOSTS = ['*', 'https://155a-180-191-65-39.ap.ngrok.io']
 
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:8000/'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8392-180-191-67-11.ap.ngrok.io']
+CSRF_TRUSTED_ORIGINS = ['https://155a-180-191-65-39.ap.ngrok.io']
 # Application definition
 
 
@@ -213,7 +213,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'two_factor:login'
-LOGIN_REDIRECT_URL = 'login-redirect'
+LOGIN_REDIRECT_URL = 'two_factor:setup'
 
 TWO_FACTOR_LOGIN_REDIRECT_URL = 'login-redirect'
 

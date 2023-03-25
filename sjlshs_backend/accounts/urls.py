@@ -5,7 +5,8 @@ from django_otp.forms import OTPTokenForm, OTPAuthenticationForm
 
 urlpatterns = [
     path('signup/', views.SignUpView.as_view(), name='signup'),
-    #path('activate/<uidb64>/<token>', views.SignUpView.activate, name='activate'),
+    path('signup/redirect/', views.SignUpRedirectView.as_view(), name='signup-redirect'),
+    path('activate/<uidb64>/<token>', views.SignUpView.activate, name='activate'),
     path('teachers/dashboard/', views.TeacherDashboardView, name='tc-dashboard'),
     path('teachers/view/student-info<int:uid>', views.StudentInfoView, name='student-info'),
     path('login/', views.CustomOTPLogInView.as_view(), name='login_otp'),

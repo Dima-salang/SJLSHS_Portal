@@ -83,12 +83,20 @@ body, html {
 }
 
 #bg-title {
-    margin: 40px auto 80px auto;
-    color: white;
-    text-align: center;
-    font-size: 75px;
-    font-family: 'Merriweather', serif;
-    text-shadow: 10px 10px 10px black;
+  margin: 40px auto 80px auto;
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  font-family: 'Merriweather', serif;
+  text-shadow: 10px 10px 10px black;
+}
+
+
+@media (max-width: 768px) {
+  /* Styles for mobile devices */
+  #bg-title {
+    font-size: 1.5rem; /* Smaller font size for mobile devices */
+  }
 }
 
 #home-btn {
@@ -104,15 +112,23 @@ body, html {
     opacity: 0.8;
 }
 
+
 #announcements {
-background-color: #f9f9f9;
-padding: 50px 0;
+  background-color: #f9f9f9;
+  padding: 50px 0;
 }
 
 #school-announcements {
     font-size: 60px;
     font-weight: 800;
     font-family: 'Merriweather', serif;
+}
+
+@media (max-width: 768px) {
+  /* Styles for mobile devices */
+  #school-announcements {
+    font-size: 2rem; /* Smaller font size for mobile devices */
+  }
 }
 
 #announcement-carousel {
@@ -217,10 +233,19 @@ background-color: black;
     margin-top: 20px;
 }
 
+
+
 #news-h1 {
     font-size: 60px;
     font-weight: 800;
     font-family: 'Merriweather', serif;
+}
+
+@media (max-width: 768px) {
+  /* Styles for mobile devices */
+  #news-h1 {
+    font-size: 2rem; /* Smaller font size for mobile devices */
+  }
 }
 
 #news-descrip {
@@ -493,6 +518,13 @@ background-color: black;
     margin-top: 50px;
 }
 
+@media (max-width: 768px) {
+  /* Styles for mobile devices */
+  #tracks-strands h1{
+    font-size: 2rem; /* Smaller font size for mobile devices */
+  }
+}
+
 
 
 #tvl-subtitle, #stem-subtitle,
@@ -509,6 +541,13 @@ background-color: black;
 #offerings-subtitle {
     font-family: 'Open Sans', sans-serif;
     font-size: 30px;
+}
+
+@media (max-width: 768px) {
+  /* Styles for mobile devices */
+  #offerings-subtitle {
+    font-size: 1.5rem; /* Smaller font size for mobile devices */
+  }
 }
 
 .enrollment-process h1 {
@@ -579,6 +618,16 @@ background-color: black;
     margin: 50px 20% 20% 20%;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px 20px 20px 20px;
+}
+
+
+/* SIGNUP-REDIRECT */
+
+#signup-redirect-body {
+  background-image: url("../images/portal-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
 
 /* LOGIN-REDIRECT */
@@ -671,9 +720,6 @@ background-color: black;
     height: 100%;
   }
   
-  #login-menu-title {
-
-  }
 
 
   #dashboard-card {

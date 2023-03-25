@@ -12,155 +12,153 @@
   
 
    {% block content %}
-    <div class="container-fluid">
-        <div class="row" id="row-2-school-logo">
-            <div class="col" id="col-school-logo">
-                <img class="mx-auto d-block" src="{% static 'images/sjlshs_croppedV4.png'%}">
-                <h1 id="bg-title">San Jose Litex Senior High School</h1>
-            </div>
+   <div class="container-fluid">
+    <div class="row" id="row-2-school-logo">
+        <div class="col text-center" id="col-school-logo">
+            <img class="img-fluid" src="{% static 'images/sjlshs_croppedV4.png'%}" style="max-height: 200px;">
+            <h1 id="bg-title" class="bg-title">San Jose Litex Senior High School</h1>
         </div>
+    </div>
+    </div>
 
-        <section id="announcements">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12">
-                <h1 class="text-center mb-4" id="school-announcements">Announcements</h1>
+    <section id="announcements">
+      <div class="container" id="announcements-bg">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="text-center mb-4" id="school-announcements">Announcements</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="announcement-carousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                {% for article in page_articles.get_children %}
+                  {% if article.slug == 'announcements'%}
+                  {% for announcement_post in article.get_children.specific %}
+                  {% if forloop.counter <= 3 %}
+                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="announcement-card">
+                      <h2 class="announcement-title" style="font-size: 24px;">{{announcement_post.title}}</h2>
+                      <p class="announcement-meta" style="font-size: 14px;">{{announcement_post.date}}</p>
+                      <p class="announcement-snippet">{{announcement_post.body|truncatechars:100|richtext}}</p>
+                      <a href="{{announcement_post.url}}" class="btn btn-primary">Read More</a>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {%endfor%}
+                  {% endif%}
+                {% endfor %}
+                <button class="carousel-control-prev" type="button" data-bs-target="#announcement-carousel" data-bs-slide="prev" style="font-size: 24px;">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#announcement-carousel" data-bs-slide="next" style="font-size: 24px;">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <div id="announcement-carousel" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner">
-                    {% for article in page_articles.get_children %}
-                      {% if article.slug == 'announcements'%}
-                      {% for announcement_post in article.get_children.specific %}
-                      {% if forloop.counter <= 5 %}
-                    <div class="carousel-item active">
-                      <div class="announcement-card">
-                        <h2 class="announcement-title">{{announcement_post.title}}</h2>
-                        <p class="announcement-meta">{{announcement_post.date}}</p>
-                        <p class="announcement-snippet">{{announcement_post.body|truncatechars:100|richtext}}</p>
-                        <a href="{{announcement_post.url}}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+        
+    <section id="news">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="text-center mb-4" id="news-h1">School News</h1>
+            <p class="text-center mb-5" id="news-descrip">Get the latest news about SJLSHS and its students.</p>
+          </div>
+        </div>
+        <div class="row">
+          {% for article in page_articles.get_children %}
+            {% if article.slug == 'news' %}
+              {% for news_post in article.get_children.specific %}
+                {% if forloop.counter <= 3 %}
+                  <div class="col-md-4 mb-4">
+                    <div class="card">
+                      {% image news_post.feed_image fill-400x400 class="card-img-top" %}
+                      <div class="card-body">
+                        <h4 class="card-title mb-2">{{ news_post.title }}</h4>
+                        <p class="card-text mb-3">{{ news_post.body|truncatechars:200|richtext }}</p>
+                        <a href="{{ news_post.url }}" class="btn btn-primary">Read More</a>
                       </div>
                     </div>
-                    {% endif %}
-                    {%endfor%}
-                    {% endif%}
-                  {% endfor %}
-                  <button class="carousel-control-prev" type="button" data-bs-target="#announcement-carousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#announcement-carousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <section id="news">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-12">
-                <h1 class="text-center mb-4" id="news-h1">School News</h1>
-                <p class="text-center mb-5" id="news-descrip">Get the latest news about SJLSHS and its students.</p>
-              </div>
-            </div>
-            <div class="row">
-              {% for article in page_articles.get_children %}
-              {% if article.slug == 'news'%}
-                {% for news_post in article.get_children.specific %}
-                {% if forloop.counter <= 3 %}
-              <div class="col-md-4 mb-4">
-                <div class="card">
-                  {% image news_post.feed_image fill-400x400 class="card-img-top"%}
-                  <div class="card-body">
-                    <h4 class="card-title mb-2">{{ news_post.title}}</h4>
-                    <p class="card-text mb-3">{{news_post.body|truncatechars:200|richtext}}</p>
-                    <a href="{{news_post.url}}" class="btn btn-primary">Read More</a>
                   </div>
-                </div>
-              </div>
-              {%endif%}
-              {%endfor%}
-            {%endif%}
-            {%endfor%}
-            </div>
-          </div>
-        </section>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
         
-          <div class="row gx-0" id="student-portal">
-            <div class="col">
-
-            </div>
-            <div class="col-lg-5 col-sm-12">
-              <div class="portal-box">
-                <div class="reg-title">
-                    <img src="{%static 'images/std_portal_logo2.png'%}" class="img-fluid">
-                </div>
-                <div class="portal-info">
-                  <p class="text-center">The SJLSHS M.A.P.S is especially created for students like you.
-                      The portal is a repository of information where students can view
-                      their education-related info such as grades, modules, schedules, personal information
-                      , and teacher announcements</p>
-                  {% if user.is_authenticated %}
-                  <a href="{% url 'login-redirect'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal">Go to M.A.P.S</button></a>
-                  {% else %}
-                  <a href="{% url 'signup'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal2">Go to M.A.P.S</button></a>
-                  {% endif %}
-                </div>
+        <div class="row gx-0" id="student-portal">
+          <div class="col"></div>
+          <div class="col-md-6 col-sm-12">
+            <div class="portal-box">
+              <div class="reg-title">
+                <img src="{%static 'images/std_portal_logo2.png'%}" class="img-fluid">
+              </div>
+              <div class="portal-info">
+                <p class="text-center" style="font-size: 16px; padding: 10px;">The SJLSHS M.A.P.S is especially created for students like you. The portal is a repository of information where students can view their education-related info such as grades, modules, schedules, personal information, and teacher announcements</p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'login-redirect'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal" style="font-size: 14px; padding: 10px;">Go to M.A.P.S</button></a>
+                {% else %}
+                <a href="{% url 'signup'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal2" style="font-size: 14px; padding: 10px;">Go to M.A.P.S</button></a>
+                {% endif %}
               </div>
             </div>
           </div>
+        </div>
+        
           
 
           
-          <div class="container-fluid gx-0" id="tracks-strands">
-            <h1 class="text-center">Academic Offerings</h1>
-            <p class="text-center" id="offerings-subtitle">Discover the tracks and strands offered by the school</p>
-          
-            <div class="row gx-4">
-              <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-                <div class="card h-100">
-                  <img src="{% static 'images/stem-img.jpg'%}" class="card-img-top" alt="STEM">
-                  <div class="card-body">
-                    <h2 class="card-title text-center">STEM</h2>
-                    <p class="card-text">The STEM strand is focused on the study of science and its related subjects, like math, technology, and engineering. It also includes coursework that can help prepare you for college-level science classes, like chemistry, physics, and biology. You'll learn how to apply critical thinking, problem-solving, and communication skills in the classroom and workplace.</p>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
-                  </div>
+        <div class="container" id="tracks-strands">
+          <h1 class="text-center">Academic Offerings</h1>
+          <p class="text-center" id="offerings-subtitle">Discover the tracks and strands offered by the school</p>
+        
+          <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4">
+              <div class="card h-100">
+                <img src="{% static 'images/stem-img.jpg'%}" class="card-img-top" alt="STEM">
+                <div class="card-body">
+                  <h2 class="card-title text-center">STEM</h2>
+                  <p class="card-text">The STEM strand is focused on the study of science and its related subjects, like math, technology, and engineering. It also includes coursework that can help prepare you for college-level science classes, like chemistry, physics, and biology. You'll learn how to apply critical thinking, problem-solving, and communication skills in the classroom and workplace.</p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
                 </div>
               </div>
-          
-              <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-                <div class="card h-100">
-                  <img src="{% static 'images/abm-img.jpg'%}" class="card-img-top" alt="ABM">
-                  <div class="card-body">
-                    <h2 class="card-title text-center">ABM</h2>
-                    <p class="card-text">Students in an accountancy and business management (ABM) strand can learn a wide range of skills and knowledge that are relevant to careers in finance, business administration, and related fields. They'll develop critical thinking, problem-solving, communication, and teamwork skills, which can be useful in a variety of career paths.</p>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
-                  </div>
+            </div>
+        
+            <div class="col-md-6 col-lg-3 mb-4">
+              <div class="card h-100">
+                <img src="{% static 'images/abm-img.jpg'%}" class="card-img-top" alt="ABM">
+                <div class="card-body">
+                  <h2 class="card-title text-center">ABM</h2>
+                  <p class="card-text">Students in an accountancy and business management (ABM) strand can learn a wide range of skills and knowledge that are relevant to careers in finance, business administration, and related fields. They'll develop critical thinking, problem-solving, communication, and teamwork skills, which can be useful in a variety of career paths.</p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
                 </div>
               </div>
-          
-              <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-                <div class="card h-100">
-                  <img src="{% static 'images/humss-img.jpg'%}" class="card-img-top" alt="HUMSS">
-                  <div class="card-body">
-                    <h2 class="card-title text-center">HUMSS</h2>
-                    <p class="card-text">The humanities are a broad field of study that includes a range of disciplines that explore the human experience, including history, literature, philosophy, art, music, and culture. In the HUMSS strand, students will learn about the history and development of different cultures and societies, and the ways in which these cultures have influenced and been influenced by art, literature, and other forms of human expression.</p>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
-                  </div>
+            </div>
+        
+            <div class="col-md-6 col-lg-3 mb-4">
+              <div class="card h-100">
+                <img src="{% static 'images/humss-img.jpg'%}" class="card-img-top" alt="HUMSS">
+                <div class="card-body">
+                  <h2 class="card-title text-center">HUMSS</h2>
+                  <p class="card-text">The humanities are a broad field of study that includes a range of disciplines that explore the human experience, including history, literature, philosophy, art, music, and culture. In the HUMSS strand, students will learn about the history and development of different cultures and societies, and the ways in which these cultures have influenced and been influenced by art, literature, and other forms of human expression.</p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="{% url 'login-redirect'%}" class="btn btn-primary">Learn More</a>
                 </div>
               </div>
+            </div>
 
               <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <div class="card h-100">
@@ -175,80 +173,7 @@
                 </div>
               </div>
 
-              <!-- <div class="col-lg-6">
-                <div class="card mb-4">
-                  <img src="{% static 'images/tvl-img.jpg'%}" class="card-img-top" alt="TVL">
-                  <div class="card-body">
-                  <h2 class="card-title text-center mb-4">TVL</h2>
-                  <p class="card-text text-center mb-5">The technical-vocational-livelihood (TVL) strand provides students with hands-on training and practical skills in a variety of technical and vocational fields, including culinary arts, automotive technology, computer hardware servicing, and others. Students in this strand will learn how to apply their knowledge and skills in real-world settings, preparing them for careers in the fields they choose to specialize in. The TVL strand also emphasizes the importance of entrepreneurship and the development of business skills.</p>
-                  <a href="{% url 'login-redirect'%}" class="btn btn-primary d-block mx-auto">Learn More</a>
-                  </div>
-                  </div>
-                  </div>
-                  
-                </div> -->
-
-
-
-        <!-- <div class="row gx-0" id="tracks-strands">
-          <bold><h1 class="text-center">Academic Offerings</h1></bold>
-          <p class="text-center" id="offerings-subtitle"=>Discover the tracks and strands offered by the school</p>
-          <div class="row gx-0">
-            <div class="col" id="stem-track">
-              <img src="{% static 'images/stem-img.jpg'%}" width="100%", height="500px">
-            </div>
-            <div class="col">
-              <h1 class="text-center">STEM</h1>
-              <p class="text-center">The STEM strand is a great place to start when you're looking for a career in science.
-                The STEM strand is focused on the study of science and its related subjects, like math, technology and engineering. 
-                It also includes coursework that can help prepare you for college-level science classes, like chemistry, physics and biology.
-                The STEM strand gives you an opportunity to develop your critical thinking, problem-solving and communication skills. 
-                You'll learn how to apply those skills in the classroom and workplace.
-                You'll have opportunities to work with professionals in the field of science so you can gain insights into how they do their jobs.</p>
-                <a href="{% url 'login-redirect'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal">Learn More</button></a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <h1 class="text-center">ABM</h1>
-              <p class="card-text text-center">Students in an accountancy and business management (ABM) strand can learn a wide range of skills
-                and knowledge that are relevant to careers in finance, business administration, and related fields. 
-               Also, students in an ABM strand may also develop skills in areas such as critical thinking, problem-solving, communication, and teamwork.
-                These skills can be useful in a variety of career paths, including in finance, business administration, and related fields. 
-             </p>
-             <a href="{% url 'login-redirect'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal">Learn More</button></a>
-            </div>
-            <div class="col">
-              <img src="{% static 'images/stem-img.jpg'%}" width="100%", height="500px">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <img src="{% static 'images/stem-img.jpg'%}" width="100%", height="500px">
-            </div>
-            <div class="col">
-              <h1 class="text-center">HUMSS</h1>
-              <p class="card-text text-center">The humanities are a broad field of study that includes a range of disciplines that explore the human experience, including history, literature, philosophy, art, music, and culture
-                In the HUMSS strand, students will learn about the history and development of different cultures and societies, and the ways in which these cultures have influenced and been influenced by art, literature, and other forms of human expression. They might will study the ideas and theories of philosophers, and explore the ways in which these ideas have shaped and continue to shape our understanding of the world.
-              </p>
-              <a href="{% url 'login-redirect'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal">Learn More</button></a>
-            </div>
-          </div> -->
-          <!-- <div class="row">
-            <div class="col">
-              <h1 class="text-center">TVL</h1>
-              <p class="card-text text-center">The Technical-Vocational Livelihood strand is designed to provide students with the technical skills and knowledge needed for careers in various technical and vocational fields, as well as to provide students with the necessary foundation for entrepreneurship.
-                TVL offers different specialized tracks such as Information and Communications Technology (ICT), Shielded Metal Arc Welding (SMAW),
-                Home Economics, and Automotive. Students in the TVL strand may also have the opportunity to learn about entrepreneurship, which involves starting and running a business. This can include topics such as business planning, marketing, and financial management.
-              </p>
-              <a href="{% url 'login-redirect'%}"><button class="btn btn-primary mx-auto d-block" id="btn-portal">Learn More</button></a>
-            </div>
-            <div class="col">
-              <img src="{% static 'images/stem-img.jpg'%}" width="100%", height="500px">
-            </div>
-          </div>
-         -->
-        
+             
 
         <div class="container-fluid gx-0">
           <div class="row justify-content-center align-items-center">
@@ -300,52 +225,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="container-fluid">
-            <div class="row">
-              <bold><h1 class="text-center" id="sch-orgs-head">School Organizations</h1></bold>
-              <p class="text-center" id="sch-orgs-subtitle">Join the campus life</p>
-            </div>
-              <div class="row gx-0">
-                <div class="row gx-0">
-                  <figure class="hover-img mx-auto d-block" id="club1">
-                    <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid d-block mx-auto">
-                    <figcaption>
-                      <h3>Supreme Student <br/>Government</h3>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="row gx-0">
-                    <figure class="hover-img ml-auto d-block" id="club2">
-                      <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                      <figcaption>
-                        <h3>Supreme Student <br/>Government</h3>
-                      </figcaption>
-                    </figure>
-                    <figure class="hover-img mr-auto d-block" id="club3">
-                      <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                      <figcaption>
-                        <h3>Supreme Student <br/>Government</h3>
-                      </figcaption>
-                    </figure>
-                <div class="row gx-0">
-                  <figure class="hover-img ml-auto d-block" id="club4">
-                    <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                    <figcaption>
-                      <h3>Supreme Student <br/>Government</h3>
-                    </figcaption>
-                  </figure>
-                  <figure class="hover-img mr-auto d-block" id="club5">
-                    <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                    <figcaption>
-                      <h3>Supreme Student <br/>Government</h3>
-                    </figcaption>
-                  </figure>
-                </div>
-      
-                  
-                </div>
-              </div>
-        </div> -->
         
         <div class="row gx-0">
           <div class="enrollment-process">
@@ -374,20 +253,24 @@
       
         
         
-        <div class="row gx-0" id="contacts">
-            <h1 class="text-center">Contacts</h1>
-            <div class="col-4">
-              <p>School ID: 342566</p>
-              <p>Registrar Number: 123456789</p>
-            </div>
-            <div class="col-4">
-              <p>Principal Number: 0123456789</p>
-            </div>
-            <div class="col">
-              <p>Principal Number: 0123456789</p>
-            </div>
+        <div class="row" id="contacts">
+          <div class="col-md-12">
+            <h1 class="text-center mb-4">Contacts</h1>
+          </div>
+          <div class="col-md-4 col-sm-12 mb-4">
+            <h4>School ID:</h4>
+            <p>342566</p>
+            <h4>Registrar Number:</h4>
+            <p>123456789</p>
+          </div>
+          <div class="col-md-4 col-sm-12 mb-4">
+            <h4>Principal Number:</h4>
+            <p>0123456789</p>
+          </div>
+          <div class="col-md-4 col-sm-12 mb-4">
+            <h4>Assistant Principal Number:</h4>
+            <p>0123456789</p>
+          </div>
         </div>
-        </div>
-    </div>
     {% endblock %}
 </body>

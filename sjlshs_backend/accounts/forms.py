@@ -44,7 +44,7 @@ class StudentInfoForm(ModelForm):
         fields = 'lrn', 'last_name', 'first_name', 'age', 'birthday', 'email', 'grade_year', 'section', 'strand'
 
 
-class CustomOTPAuthenticationForm(OTPAuthenticationForm):
+class CustomOTPAuthenticationForm(AuthenticationForm):
     lrn = forms.CharField(required=True, label='LRN', max_length=15)
 
     def __init__(self, *args, **kwargs):

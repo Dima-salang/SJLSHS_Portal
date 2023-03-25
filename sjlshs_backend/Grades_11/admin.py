@@ -5,8 +5,11 @@ from .models import *
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources, fields
 from import_export.resources import ModelResource
-from io import StringIO 
+import io
 from django.core.files import File
+from reportlab.lib.utils import ImageReader
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
 import csv
 
 
@@ -119,31 +122,195 @@ class SecondSem4thQResource(resources.ModelResource):
 
 class FirstQAdmin(ImportExportModelAdmin):
         resource_class = FirstSem1stQResource
-        
-        def get_queryset(self, request):
-                qs = super().get_queryset(request)
-                return qs.none()
+        actions = ['generate_pdf']
+
+        def generate_pdf(self, request, queryset):
+                # create PDF buffer
+                buffer = io.BytesIO()
+
+                # create PDF object
+                p = canvas.Canvas(buffer)
+
+                # load the layout image
+                img_path = f"C:\\Users\\Luis\\PycharmProjects\\SJLSHS_Portal\\SJLSHS_Portal\\sjlshs_backend\\static\\root\\images\\portal-bg.jpg"
+                img = ImageReader(img_path)
+
+                # loop through grades and add to PDF
+                for grade in queryset:
+                        print("Grade drawn")
+                        p.drawImage(img, 0, 0, width=p._pagesize[0], height=p._pagesize[1])
+                        p.drawString(20, 800, f"Last Name: {grade.last_name}")
+                        p.drawString(200, 800, f"First Name: {grade.first_name}")
+                        p.drawString(400, 800, f"LRN: {grade.lrn}")
+                        p.drawString(20, 700, f"Oral Communication: {grade.ORALCOMM}")
+                        p.drawString(20, 680, f"Komunikasyon at Pananaliksik sa Wika at Kulturang Pilipino: {grade.KOMUNIKASYON}")
+                        p.drawString(20, 660, f"General Mathematics: {grade.GENMATH}")
+                        p.drawString(20, 640, f"Earth and Life Science: {grade.ELS}")
+                        p.drawString(20, 620, f"Personal Development: {grade.PERDEV}")
+                        p.drawString(20, 600, f"Specialized: {grade.SPECIALIZED}")
+                        p.drawString(20, 580, f"Specialized: {grade.SPECIALIZED_2}")
+                        p.drawString(20, 560, f"21st Century Literature: {grade.LITERATURE}")
+                        p.drawString(20, 540, f"Practical Research 1: {grade.PR1}")
+                        p.drawString(20, 520, f"Physical Education 3: {grade.PE}")
+                        # add more details to PDF as desired
+
+                        
+                        p.showPage()
+                        
+                # save PDF to buffer   
+                p.save()
+                # rewind buffer and create FileResponse
+                buffer.seek(0)
+                file_name = 'grades.pdf'
+                response = FileResponse(buffer, as_attachment=True, filename=file_name)
+                return response
+                
+
+        generate_pdf.short_description = "Generate PDF for selected grades"
+
         
 class SecondQAdmin(ImportExportModelAdmin):
         resource_class = FirstSem2ndQResource
+        actions = ['generate_pdf']
+
+        def generate_pdf(self, request, queryset):
+                # create PDF buffer
+                buffer = io.BytesIO()
+
+                # create PDF object
+                p = canvas.Canvas(buffer)
+
+                # load the layout image
+                img_path = f"C:\\Users\\Luis\\PycharmProjects\\SJLSHS_Portal\\SJLSHS_Portal\\sjlshs_backend\\static\\root\\images\\portal-bg.jpg"
+                img = ImageReader(img_path)
+
+                # loop through grades and add to PDF
+                for grade in queryset:
+                        print("Grade drawn")
+                        p.drawImage(img, 0, 0, width=p._pagesize[0], height=p._pagesize[1])
+                        p.drawString(20, 800, f"Last Name: {grade.last_name}")
+                        p.drawString(200, 800, f"First Name: {grade.first_name}")
+                        p.drawString(400, 800, f"LRN: {grade.lrn}")
+                        p.drawString(20, 700, f"Oral Communication: {grade.ORALCOMM}")
+                        p.drawString(20, 680, f"Komunikasyon at Pananaliksik sa Wika at Kulturang Pilipino: {grade.KOMUNIKASYON}")
+                        p.drawString(20, 660, f"General Mathematics: {grade.GENMATH}")
+                        p.drawString(20, 640, f"Earth and Life Science: {grade.ELS}")
+                        p.drawString(20, 620, f"Personal Development: {grade.PERDEV}")
+                        p.drawString(20, 600, f"Specialized: {grade.SPECIALIZED}")
+                        p.drawString(20, 580, f"Specialized: {grade.SPECIALIZED_2}")
+                        p.drawString(20, 560, f"21st Century Literature: {grade.LITERATURE}")
+                        p.drawString(20, 540, f"Practical Research 1: {grade.PR1}")
+                        p.drawString(20, 520, f"Physical Education 3: {grade.PE}")
+                        # add more details to PDF as desired
+
+                        
+                        p.showPage()
+                        
+                # save PDF to buffer   
+                p.save()
+                # rewind buffer and create FileResponse
+                buffer.seek(0)
+                file_name = 'grades.pdf'
+                response = FileResponse(buffer, as_attachment=True, filename=file_name)
+                return response
+                
+
+        generate_pdf.short_description = "Generate PDF for selected grades"
         
-        def get_queryset(self, request):
-                qs = super().get_queryset(request)
-                return qs.none()
         
 class ThirdQAdmin(ImportExportModelAdmin):
         resource_class = SecondSem3rdQResource
+        actions = ['generate_pdf']
+
+        def generate_pdf(self, request, queryset):
+                # create PDF buffer
+                buffer = io.BytesIO()
+
+                # create PDF object
+                p = canvas.Canvas(buffer)
+
+                # load the layout image
+                img_path = f"C:\\Users\\Luis\\PycharmProjects\\SJLSHS_Portal\\SJLSHS_Portal\\sjlshs_backend\\static\\root\\images\\portal-bg.jpg"
+                img = ImageReader(img_path)
+
+                # loop through grades and add to PDF
+                for grade in queryset:
+                        print("Grade drawn")
+                        p.drawImage(img, 0, 0, width=p._pagesize[0], height=p._pagesize[1])
+                        p.drawString(20, 800, f"Last Name: {grade.last_name}")
+                        p.drawString(200, 800, f"First Name: {grade.first_name}")
+                        p.drawString(400, 800, f"LRN: {grade.lrn}")
+                        p.drawString(20, 700, f"Reading and Writing: {grade.READING_WRITING}")
+                        p.drawString(20, 680, f"Pagbasa at Pagsusuri ng Iba't Ibang Teksto Tungo sa Pananaliksik: {grade.PAGBASA}")
+                        p.drawString(20, 660, f"Statistics and Probability: {grade.STATS_PROB}")
+                        p.drawString(20, 640, f"Physical Science: {grade.PHYSCI}")
+                        p.drawString(20, 620, f"Empowerment Technologies: {grade.EMPOWERMENT}")
+                        p.drawString(20, 600, f"Specialized: {grade.SPECIALIZED}")
+                        p.drawString(20, 580, f"Specialized: {grade.SPECIALIZED_2}")
+                        p.drawString(20, 560, f"Physical Education 3: {grade.PE}")
+                        # add more details to PDF as desired
+
+                        
+                        p.showPage()
+                        
+                # save PDF to buffer   
+                p.save()
+                # rewind buffer and create FileResponse
+                buffer.seek(0)
+                file_name = 'grades.pdf'
+                response = FileResponse(buffer, as_attachment=True, filename=file_name)
+                return response
+                
+
+        generate_pdf.short_description = "Generate PDF for selected grades"
         
-        def get_queryset(self, request):
-                qs = super().get_queryset(request)
-                return qs.none()
         
 class FourthQAdmin(ImportExportModelAdmin):
         resource_class = SecondSem4thQResource
+        actions = ['generate_pdf']
+
+        def generate_pdf(self, request, queryset):
+                # create PDF buffer
+                buffer = io.BytesIO()
+
+                # create PDF object
+                p = canvas.Canvas(buffer)
+
+                # load the layout image
+                img_path = f"C:\\Users\\Luis\\PycharmProjects\\SJLSHS_Portal\\SJLSHS_Portal\\sjlshs_backend\\static\\root\\images\\portal-bg.jpg"
+                img = ImageReader(img_path)
+
+                # loop through grades and add to PDF
+                for grade in queryset:
+                        print("Grade drawn")
+                        p.drawImage(img, 0, 0, width=p._pagesize[0], height=p._pagesize[1])
+                        p.drawString(20, 800, f"Last Name: {grade.last_name}")
+                        p.drawString(200, 800, f"First Name: {grade.first_name}")
+                        p.drawString(400, 800, f"LRN: {grade.lrn}")
+                        p.drawString(20, 700, f"Reading and Writing: {grade.READING_WRITING}")
+                        p.drawString(20, 680, f"Pagbasa at Pagsusuri ng Iba't Ibang Teksto Tungo sa Pananaliksik: {grade.PAGBASA}")
+                        p.drawString(20, 660, f"Statistics and Probability: {grade.STATS_PROB}")
+                        p.drawString(20, 640, f"Physical Science: {grade.PHYSCI}")
+                        p.drawString(20, 620, f"Empowerment Technologies: {grade.EMPOWERMENT}")
+                        p.drawString(20, 600, f"Specialized: {grade.SPECIALIZED}")
+                        p.drawString(20, 580, f"Specialized: {grade.SPECIALIZED_2}")
+                        p.drawString(20, 560, f"Physical Education 3: {grade.PE}")
+                        # add more details to PDF as desired
+
+                        
+                        p.showPage()
+                        
+                # save PDF to buffer   
+                p.save()
+                # rewind buffer and create FileResponse
+                buffer.seek(0)
+                file_name = 'grades.pdf'
+                response = FileResponse(buffer, as_attachment=True, filename=file_name)
+                return response
+                
+
+        generate_pdf.short_description = "Generate PDF for selected grades"
         
-        def get_queryset(self, request):
-                qs = super().get_queryset(request)
-                return qs.none()
 
 admin.site.register(FirstSem_1stQ_11, FirstQAdmin)
 admin.site.register(FirstSem_2ndQ_11, SecondQAdmin)

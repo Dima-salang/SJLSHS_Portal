@@ -44,7 +44,7 @@
                       "
                       >{{ Post.Title }}</h5>
                     <!-- Use a paragraph to display the body of the post -->
-                    <p class="card-text">{{ Post.Body }}</p>
+                    <p class="card-text">{{ Post.Body|safe }}</p>
                   </div>
                   <!-- Use a footer to display the author and date of the post -->
                   <div class="card-footer bg-white">
@@ -73,14 +73,44 @@
                     </p>
                   </div>
                 </div>
-              
-                  
                 {% endfor %}
               </div>
               </div>
             </div>
           </div>
         </div>
+        
+      </div>
+      <div class="card-footer bg-white">
+        ...
+        <p class="card-text small text-muted mb-0">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </p>
+        <nav aria-label="...">
+          <ul class="pagination pagination-sm justify-content-end">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+            </li>
+            {% endif %}
+            {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li class="page-item active">
+              <a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
       </div>
     </div>
            

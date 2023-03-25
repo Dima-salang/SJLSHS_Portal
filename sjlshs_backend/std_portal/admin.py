@@ -1,10 +1,15 @@
 from django.contrib import admin
+from tinymce.widgets import TinyMCE
+from django.db import models
+from django_summernote.admin import SummernoteModelAdmin
 # Register your models here.
 
 
 from .models import Post, Modules, Schedule
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
+
+    summernote_fields = ('Body',)
 
     exclude = ('Author',)
     def save_model(self, request, obj, form, change):
@@ -19,6 +24,7 @@ class PostAdmin(admin.ModelAdmin):
             return qs
         else:
             return qs.filter(Author=request.user)
+            
         
 
 admin.site.register(Post, PostAdmin)

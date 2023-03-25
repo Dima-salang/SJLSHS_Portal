@@ -11,17 +11,42 @@ body, html {
     color: black;
 }
 
-#news {
-    background-color: #f9f9f9;
-    padding: 60px 0;
+
+  .card {
+    position: relative;
   }
   
-  
-  #news p {
-    font-size: 18px;
-    font-weight: 400;
-    color: #666;
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+  
+  .card:hover .overlay {
+    opacity: 1;
+  }
+
+  .overlay h3 {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .overlay a {
+    text-decoration: none;
+  }
+  
+
+  
   
   .card {
     border: none;
@@ -86,7 +111,7 @@ body, html {
   margin: 40px auto 80px auto;
   color: white;
   text-align: center;
-  font-size: 3rem;
+  font-size: 5rem;
   font-family: 'Merriweather', serif;
   text-shadow: 10px 10px 10px black;
 }
@@ -116,6 +141,9 @@ body, html {
 #announcements {
   background-color: #f9f9f9;
   padding: 50px 0;
+  background-image: url('../images/abstract-7.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #school-announcements {
@@ -227,12 +255,38 @@ background-color: black;
     transition: all 0.2s ease-in-out;
   }
 
+
+#school-events{
+  font-size: 60px;
+  font-weight: 800;
+  font-family: 'Merriweather', serif;
+}
+
+#school-events-subtitle{
+  color: #666;
+  font-family: 'Montserrat', sans-serif;
+}
+
 #news-head {
     font-size: 54px;
     margin-bottom: 5px;
     margin-top: 20px;
 }
 
+#news {
+  background-color: #add8e6;
+  background-image: url('../images/abstract-6.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 60px 0;
+}
+
+
+#news p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #666;
+}
 
 
 #news-h1 {
@@ -250,6 +304,7 @@ background-color: black;
 
 #news-descrip {
     font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -283,6 +338,7 @@ background-color: black;
     grid-template-rows: 1fr 1fr 1fr;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 50px 20px 100px 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #btn-portal {
@@ -335,6 +391,7 @@ background-color: black;
     font-size: 1.5rem;
     color: #777;
     margin-bottom: 4rem;
+    font-family: 'Montserrat', sans-serif;
   }
   .hover-img {
     position: relative;
@@ -505,7 +562,11 @@ background-color: black;
     margin-left: 50px;
 }
 
-
+#tracks-strands {
+  background-image: url('../images/portal-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 #tracks-strands img{
     margin: 20px 20px 20px 0;
@@ -515,7 +576,6 @@ background-color: black;
     font-family: 'Merriweather', serif;
     font-weight: 800;
     font-size: 60px;
-    margin-top: 50px;
 }
 
 @media (max-width: 768px) {
@@ -539,8 +599,8 @@ background-color: black;
 
 
 #offerings-subtitle {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
 }
 
 @media (max-width: 768px) {
@@ -558,7 +618,7 @@ background-color: black;
 }
 
 #enrollment-subtitle {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
 }
 
@@ -574,6 +634,10 @@ background-color: black;
     font-weight: 800;
     font-size: 56px;
     margin-top: 20px;
+}
+
+#about-school p {
+  font-family: 'Montserrat', sans-serif;
 }
 
 #contacts {

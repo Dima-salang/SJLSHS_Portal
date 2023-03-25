@@ -14,6 +14,6 @@ urlpatterns = [
     path('portal-modules/', views.PortalModules.as_view(), name='portal-modules'),
     path('portal-modules-ucsp/', views.PortalModulesUCSP.as_view(), name='portal-modules-ucsp'),
     path('portal-redirect/', update_users, name='login-redirect'),
-    path('portal-maps-redirect/', views.PortalRedirectView.as_view(), name='portal-maps-redirect')
+    path('portal-maps-redirect/', views.PortalRedirectView.as_view(), name='portal-maps-redirect'),
 
 ]

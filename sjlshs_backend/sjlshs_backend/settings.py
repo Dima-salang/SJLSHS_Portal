@@ -97,6 +97,9 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.contrib.settings',
     'wagtail',
+    'reportlab',
+    'tinymce',
+    'django_summernote',
 
     'modelcluster',
     'taggit',   
@@ -108,8 +111,10 @@ INSTALLED_APPS = [
     'accounts',
     'Grades_11',
     'Grades_12',
+    'Irregular_Students',
     'subjects',
     'wagtailApp',
+
 ]
 
 MIDDLEWARE = [
@@ -248,3 +253,30 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 
 WAGTAIL_SITE_NAME = 'ADMIN CONTENT CREATION'
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'width': 900,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': '''
+        textcolor save link image media preview codesample contextmenu
+        table code lists fullscreen insertdatetime nonbreaking
+        contextmenu directionality emoticons template paste textcolor colorpicker textpattern imagetools
+    ''',
+    'toolbar1': '''
+        fullscreen preview bold italic underline | fontselect,
+        fontsizeselect  | forecolor backcolor | alignleft alignright |
+        aligncenter alignjustify | indent outdent | bullist numlist table | link image media | codesample
+    ''',
+    'toolbar2': '''
+        visualblocks visualchars |
+        charmap hr pagebreak nonbreaking anchor |  code |
+    ''',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
+}
+

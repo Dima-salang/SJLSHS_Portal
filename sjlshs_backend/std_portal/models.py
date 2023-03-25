@@ -9,6 +9,7 @@ from django.core.files.images import ImageFile
 from django.core.files import File
 from django.utils.text import slugify
 from sorl.thumbnail import get_thumbnail
+from tinymce import models as tinymce_models
 from io import BytesIO
 import os
 import fitz

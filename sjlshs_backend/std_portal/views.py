@@ -9,6 +9,7 @@ from django_otp.decorators import otp_required
 from wagtail.models import Page
 from wagtailApp.models import ArticleIndexPage, ArticlePage
 from django.db.models import Q
+from django.http import JsonResponse
 
 # Create your views here.
 from django.http import HttpResponse
@@ -53,12 +54,12 @@ def update_users(request):
 class PortalPersonalView(TemplateView):
     model = StudentUser
     template_name = 'portal-personal.html'
-
+    
 
 class PortalAnnouncements(ListView):
     model = Post
     template_name = "portal-announcements.html"
-
+    paginate_by = 5 # Set the number of items to display per page
     def get_queryset(self):
         user = self.request.user
         if user.is_superuser:
@@ -66,6 +67,8 @@ class PortalAnnouncements(ListView):
         else:
             queryset = Post.objects.filter(Q(Section=user.section) | Q(Section=3))
         return queryset
+    
+
 
 class PortalSched(ListView):
     model = Schedule

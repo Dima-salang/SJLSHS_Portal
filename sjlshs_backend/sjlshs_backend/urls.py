@@ -35,6 +35,7 @@ urlpatterns = [
     path('', include('std_portal.urls')),
     path('grades/', include('Grades_12.urls')),
     path('grades/', include('Grades_11.urls')),
+    path('irreg/', include('Irregular_Students.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
     path('/', include('django.contrib.auth.urls')),
@@ -48,6 +49,8 @@ urlpatterns = [
     path('documents/', include(wagtaildocs_urls)),
     path('pages/', include(wagtail_urls)),
     path('', include('wagtailApp.urls')),
+    path('tinymce/', include('tinymce.urls')),
+    path('summernote/', include('django_summernote.urls')),
     
 ]
 

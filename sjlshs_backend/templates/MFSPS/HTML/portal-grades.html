@@ -26,8 +26,8 @@
 
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h1 class="card-title">Grades for {{user.last_name}}</h1>
+                        <div class="card-header bg-info">
+                            <h1 class="card-title text-white">Grades for {{user.last_name}}</h1>
                         </div>
                         <div class="card-body">
                             <div id="accordion" class="accordion">
@@ -35,13 +35,13 @@
                                     <div class="card-header accordion-header">
                                         <h4 class="card-title w-100">
                                             <button class="accordion-button btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                                                Collapsible Group Item #1
+                                                1st Semester 1st Quarter
                                             </button>
                                         </h4>
                                     </div>
                                     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordion">
                                         <div class="card-body">
-                                            {% for grade in gradetest %}
+                                            {% for grade in grades1st %}
                         {% if user.lrn == grade.lrn %}
                         <table class="table">
                             <thead class="table-dark">
@@ -81,7 +81,7 @@
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
-                                        <td>EAPP</td>
+                                        <td>English for Academic Purposes Program</td>
                                         <td>1</td>
                                         <td>{{grade.EAPP}}</td>
                                         <td>N/A</td>
@@ -89,13 +89,13 @@
                                     <tr>
                                         <td>Programming</td>
                                         <td>1</td>
-                                        <td>{{grade.SPECC}}</td>
+                                        <td>{{grade.SPECIALIZED}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
                                         <td>Programming</td>
                                         <td>1</td>
-                                        <td>{{grade.SPECC2}}</td>
+                                        <td>{{grade.SPECIALIZED_2}}</td>
                                         <td>N/A</td>
                                     </tr>
                                     <tr>
@@ -115,58 +115,147 @@
                                     <div class="card-header accordion-header">
                                         <h4 class="card-title w-100">
                                             <button class="accordion-button collapsed btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                                                Collapsible Group Danger
+                                                1st Semester 2nd Quarter
                                             </button>
                                         </h4>
                                     </div>
                                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
+                                            
+                                            {% for grade in grades2nd %}
+                                            {% if user.lrn == grade.lrn %}
                                             <table class="table">
                                                 <thead class="table-dark">
                                                     <tr>
+                                                        <th scope="col" colspan="4" class="text-center">First Semester - 2nd Quarter</th>
+                                                    </tr>
+                                                    <tr>
                                                         <th scope="col">Subject Description</th>
                                                         <th scope="col">Units</th>
-                                                        <th scope="col">Grade Marks</th>
+                                                        <th scope="col">Grading Marks</th>
                                                         <th scope="col">Remarks</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>{{ user.GradePost2nd.pr2_2nd }}</td>
-                                                        <td>{{ user.GradePost2nd.cpar_2nd}}</td>
-                                                        <td>{{ user.GradePost2nd.pe_2nd}}</td>
-                                                        <td>{{ user.GradePost2nd.spec_2nd}}</td>
-                                                        <td>{{ user.GradePost2nd.ucsp_2nd}}</td>
-                                                        <td>{{ user.GradePost2nd.philo_2nd}}</td>
-                                                        <td>{{ user.GradePost2nd.eapp_2nd}}</td>
-                                                        <td>{{ user.GradePost2nd.grade_avg_2ndq}}</td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td>Practical Research 2</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.PR2}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Contemporary Philippine Arts</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.CPAR}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Philosophy</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.PHILOSOPHY}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Understanding Culture, Society, and Politics</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.UCSP}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>English for Academic Purposes Program</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.EAPP}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Specialized</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.SPECIALIZED}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Specialized</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.SPECIALIZED_2}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Physical Education</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.PE}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
                                                 </tbody>
                                             </table>
+                                            {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
-                                </div>
                                 <div class="card accordion-item">
                                     <div class="card-header accordion-header">
                                         <h4 class="card-title w-100">
                                             <button class="accordion-button btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                                                Collapsible Group Item #1
+                                                2nd Semester 3rd Quarter
                                             </button>
                                         </h4>
                                     </div>
-                                    <div id="collapseThree" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
-                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                                            3
-                                            wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                                            laborum
-                                            eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
-                                            nulla
-                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                            nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                                            beer
-                                            farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                                            labore sustainable VHS.
+                                            {% for grade in grades3rd %}
+                                            {% if user.lrn == grade.lrn %}
+                                            <table class="table">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th scope="col" colspan="4" class="text-center">Second Semester - 3rd Quarter</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">Subject Description</th>
+                                                        <th scope="col">Units</th>
+                                                        <th scope="col">Grading Marks</th>
+                                                        <th scope="col">Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                            <td>Inquiries, Investigation, and Immersion</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.III}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Media and Information Literacy</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.MIL}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Work Immersion</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.IMMERSION}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Speciazlied</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.SPECIALIZED}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Specialized</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.SPECIALIZED_2}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Physical Education and Health</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.PE4}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                            {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -174,23 +263,67 @@
                                     <div class="card-header accordion-header">
                                         <h4 class="card-title w-100">
                                             <button class="accordion-button btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                                                Collapsible Group Item #1
+                                                2nd Semester 4th Quarter
                                             </button>
                                         </h4>
                                     </div>
-                                    <div id="collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
-                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                                            3
-                                            wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                                            laborum
-                                            eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
-                                            nulla
-                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                                            nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                                            beer
-                                            farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                                            labore sustainable VHS.
+                                            {% for grade in grades4th %}
+                                            {% if user.lrn == grade.lrn %}
+                                            <table class="table">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th scope="col" colspan="4" class="text-center">Second Semester - 4th Quarter</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">Subject Description</th>
+                                                        <th scope="col">Units</th>
+                                                        <th scope="col">Grading Marks</th>
+                                                        <th scope="col">Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                            <td>Inquiries, Investigation, and Immersion</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.III}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Media and Information Literacy</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.MIL}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Work Immersion</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.IMMERSION}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Speciazlied</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.SPECIALIZED}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Specialized</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.SPECIALIZED_2}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Physical Education and Health</td>
+                                                            <td>1</td>
+                                                            <td>{{grade.PE4}}</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                            {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -201,182 +334,7 @@
 
 
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3>{{user.lrn}} - {{ user.last_name}}, {{user.first_name}} ({{user.section}} )</h3>
-                        <h1>1st Semester 1st Quarter Grades</h1>
-                    </div>
-                    
-                    <div class="card-body">
-                        {% for grade in gradetest %}
-                        {% if user.lrn == grade.lrn %}
-                        <table class="table">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col" colspan="4" class="text-center">First Semester - 1st Quarter</th>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Subject Description</th>
-                                    <th scope="col">Units</th>
-                                    <th scope="col">Grading Marks</th>
-                                    <th scope="col">Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr>
-                                        <td>Practical Research 2</td>
-                                        <td>1</td>
-                                        <td>{{grade.PR2}}</td>
-                                        <td>N/A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contemporary Philippine Arts</td>
-                                        <td>1</td>
-                                        <td>{{grade.CPAR}}</td>
-                                        <td>N/A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Philosophy</td>
-                                        <td>1</td>
-                                        <td>{{grade.PHILOSOPHY}}</td>
-                                        <td>N/A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Understanding Culture, Society, and Politics</td>
-                                        <td>1</td>
-                                        <td>{{grade.UCSP}}</td>
-                                        <td>N/A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>EAPP</td>
-                                        <td>1</td>
-                                        <td>{{grade.EAPP}}</td>
-                                        <td>N/A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Programming</td>
-                                        <td>1</td>
-                                        <td>{{grade.SPECC}}</td>
-                                        <td>N/A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Programming</td>
-                                        <td>1</td>
-                                        <td>{{grade.SPECC2}}</td>
-                                        <td>N/A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Physical Education</td>
-                                        <td>1</td>
-                                        <td>{{grade.PE}}</td>
-                                        <td>N/A</td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-                
-                <div class="card">
-                    <div class="card-header">
-                        <h1>1st Semester 2nd Quarter Grades</h1>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col">Subject Description</th>
-                                    <th scope="col">Units</th>
-                                    <th scope="col">Grade Marks</th>
-                                    <th scope="col">Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ user.GradePost2nd.pr2_2nd }}</td>
-                                    <td>{{ user.GradePost2nd.cpar_2nd}}</td>
-                                    <td>{{ user.GradePost2nd.pe_2nd}}</td>
-                                    <td>{{ user.GradePost2nd.spec_2nd}}</td>
-                                    <td>{{ user.GradePost2nd.ucsp_2nd}}</td>
-                                    <td>{{ user.GradePost2nd.philo_2nd}}</td>
-                                    <td>{{ user.GradePost2nd.eapp_2nd}}</td>
-                                    <td>{{ user.GradePost2nd.grade_avg_2ndq}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h1>2nd Semester 1st Quarter Grades</h1>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col">PR2</th>
-                                    <th scope="col">CPAR</th>
-                                    <th scope="col">PE</th>
-                                    <th scope="col">SPEC</th>
-                                    <th scope="col">UCSP</th>
-                                    <th scope="col">PHILO</th>
-                                    <th scope="col">EAPP</th>
-                                    <th scope="col">AVERAGE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ user.GradePost.pr2_3rd}}</td>
-                                    <td>{{ user.GradePost.cpar_3rd}}</td>
-                                    <td>{{ user.GradePost.pe_3rd}}</td>
-                                    <td>{{ user.GradePost.spec_3rd}}</td>
-                                    <td>{{ user.GradePost.ucsp_3rd}}</td>
-                                    <td>{{ user.GradePost.philo_3rd}}</td>
-                                    <td>{{ user.GradePost.eapp_3rd}}</td>
-                                    <td>{{ user.GradePost.grade_avg_3rdq}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h1>2nd Semester 2nd Quarter Grades</h1>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col">PR2</th>
-                                    <th scope="col">CPAR</th>
-                                    <th scope="col">PE</th>
-                                    <th scope="col">SPEC</th>
-                                    <th scope="col">UCSP</th>
-                                    <th scope="col">PHILO</th>
-                                    <th scope="col">EAPP</th>
-                                    <th scope="col">AVERAGE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ user.GradePost.pr2_4th }}</td>
-                                    <td>{{ user.GradePost.cpar_4th}}</td>
-                                    <td>{{ user.GradePost.pe_4th}}</td>
-                                    <td>{{ user.GradePost.spec_4th}}</td>
-                                    <td>{{ user.GradePost.ucsp_4th}}</td>
-                                    <td>{{ user.GradePost.philo_4th}}</td>
-                                    <td>{{ user.GradePost.eapp_4th}}</td>
-                                    <td>{{ user.GradePost.grade_avg_4thq}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
     {% endblock %}
     
     

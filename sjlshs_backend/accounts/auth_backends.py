@@ -1,4 +1,4 @@
-from django.contrib.auth.backends import BaseBackend
+from django.contrib.auth.backends import BaseBackend, ModelBackend
 from django.contrib.auth import get_user_model
 from django_otp.plugins.otp_email.models import EmailDevice
 from django_otp import devices_for_user

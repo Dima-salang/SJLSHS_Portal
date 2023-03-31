@@ -92,3 +92,30 @@ class ArticleIndexPageLatestArticles(Orderable):
     panels = [
         FieldPanel("article"),
     ]
+
+
+class CareerInformationArticle(Page):
+    School_Image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    School_Description = RichTextField(blank=True)
+    
+    search_fields = Page.search_fields + [
+        index.SearchField('School_Description'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('School_Image'),
+        FieldPanel('School_Description', classname="full"),
+        
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading='Content'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])

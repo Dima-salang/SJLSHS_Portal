@@ -117,7 +117,7 @@ body, html {
 
 #announcements {
 background-color: #f9f9f9;
-padding: 50px 0;
+
 }
 
 #school-announcements {
@@ -140,7 +140,6 @@ border: 2px solid #f9f9f9;
 border: 2px solid #f9f9f9;
   border-radius: 50px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-padding: 100px;
 transition: all 0.3s ease-in-out;
 box-sizing: border-box;
 }

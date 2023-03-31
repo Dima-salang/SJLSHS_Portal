@@ -1,0 +1,35 @@
+{% extends 'portal-base.html' %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+  <div class="container-fluid mt-5">
+    <div class="row">
+      <div class="col-md-12 mt-5 text-center">
+        <h2 class="text-center" id="school-events">Career Center</h2>
+        <p class="text-center mt-3" id="school-events-subtitle">The future of Litexians is bright! Check out the
+          schools that you can apply for as well as their offered courses and scholarships.
+        </p>
+      </div>
+      <div class="col-md-12">
+        <div class="row">
+          {% for article in career_articles %}
+                {%if forloop.counter <= 6 %}
+                  <div class="col-md-3">
+                    <div class="card mb-4">
+                      <div class="overlay">
+                        <a href="{{article.url}}"><h3>{{article.title}}</h3></a>
+                      </div>
+                      {% image article.School_Image fill-400x400 class="card-img-top" %}
+                    </div>
+                  </div>
+            {%endif%}
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

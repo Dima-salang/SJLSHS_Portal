@@ -107,6 +107,12 @@
                   <p>Messages</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{% url 'career-center'%}" class="nav-link {% if request.path == '/career-center/'%} active {% endif %}">
+                  <i class="far fas fa-user"></i>
+                  <p>Career Center</p>
+                </a>
+              </li>
 
               {% if user.is_authenticated %}
               <li class="nav-item">

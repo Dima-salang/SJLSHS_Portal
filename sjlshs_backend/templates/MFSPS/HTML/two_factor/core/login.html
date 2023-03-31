@@ -8,6 +8,9 @@
 
 {% block content %}
 <body class="register-page">
+  <div class="container-fluid">
+
+  </div>
     <div class="reg-box">
   <h1 class="text-center">{% block title %}{% trans "SJLSHS LOGIN" %}{% endblock %}</h1>
 
@@ -23,11 +26,6 @@
 
   <form action="" method="post">{% csrf_token %}
     {% include "two_factor/_wizard_forms.html" %}
-    
-    <div class="form-group">
-      <label for="{{ form.lrn.id_for_label }}">{{ form.lrn.label }}</label>
-      {{ form.lrn }}
-    </div>
 
     {# hidden submit button to enable [enter] key #}
     <input type="submit" class="btn btn-outline-primary" value="" hidden />

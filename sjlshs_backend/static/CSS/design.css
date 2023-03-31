@@ -11,27 +11,158 @@ body, html {
     color: black;
 }
 
+/* Chatbot container */
+#chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3;
+}
+
+/* Chatbot toggle button */
+#chatbot-toggle {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* Chatbot popup */
+#chatbot {
+  position:relative;
+  overflow-y: auto;
+  max-height: 450px;
+  bottom: 100px;
+  right: 20px;
+  width: 350px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 3;
+}
+
+/* Chatbot header */
+#chatbot-header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Chatbot close button */
+#chatbot-close {
+  color: white;
+  font-size: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Chatbot body */
+#chatbot-body {
+  height: 100%;
+  padding: 10px;
+  height: 360px;
+  overflow-y: auto;
+  padding-bottom:100px;
+}
+
+/* Chatbot form */
+#chatbot-form {
+  position: absolute;
+  display: flex;
+  margin-top: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(0,0,0,.1);
+  z-index: 4;
+}
+
+#chatbot-form input[type="text"] {
+  width: 70%;
+  margin-bottom: 0;
+}
+
+#chatbot-form button[type="submit"] {
+  width: 30%;
+  margin-bottom: 0;
+}
+
+/* Chatbot input */
+#message {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Chatbot submit button */
+#chatbot-form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Chatbot response */
+.chatbot-response {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Chatbot response text */
+.chatbot-response p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Chatbot response time */
+.chatbot-response small {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
 
   .card {
-    position: relative;
+    
   }
   
   .overlay {
-    position: absolute;
+    position: absolute !important;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 0 !important;
+    transition: opacity 0.2s ease-in-out !important;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   .card:hover .overlay {
-    opacity: 1;
+    opacity: 1 !important;
   }
 
   .overlay h3 {
@@ -45,19 +176,16 @@ body, html {
     text-decoration: none;
   }
   
-
-  
-  
   .card {
     border: none;
-    border-radius: 10px;
+    border-radius: 10px !important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease !important;
   }
   
   .card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3)  ;
     transform: translateY(-5px);
   }
   
@@ -173,7 +301,8 @@ border: 2px solid #f9f9f9;
 border: 2px solid #f9f9f9;
   border-radius: 50px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-padding: 100px;
+padding: 50px;
+min-height:360px;
 transition: all 0.3s ease-in-out;
 box-sizing: border-box;
 }
@@ -247,13 +376,16 @@ background-color: black;
 
 
 .carousel-item {
-    height: 370px;
 }
 
 .carousel-item:hover {
     transform: scale(1.05);
     transition: all 0.2s ease-in-out;
   }
+
+.carousel-item img{
+  object-fit: contain;
+}
 
 
 #school-events{
@@ -458,91 +590,6 @@ background-color: black;
     }
   }
 
-/* .hover-img {
-    background-color: #000;
-    color: #fff;
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    width: 50%;
-  }
-
-  
-  .hover-img * {
-    box-sizing: border-box;
-    transition: all 0.45s ease;
-  }
-  
-  .hover-img::before,
-  .hover-img::after {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-top: 32px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 32px solid rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    content: '';
-    transition: all 0.3s ease;
-    z-index: 1;
-    opacity: 0;
-    transform: scaleY(2);
-  }
-  
-  .hover-img img {
-    vertical-align: top;
-    max-width: 100%;
-    backface-visibility: hidden;
-  }
-  
-  .hover-img figcaption {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    align-items: center;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    line-height: 1.1em;
-    opacity: 0;
-    z-index: 2;
-    transition-delay: 0.1s;
-    font-size: 24px;
-    font-family: sans-serif;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  
-  .hover-img:hover::before,
-  .hover-img:hover::after {
-    transform: scale(1);
-    opacity: 1;
-  }
-  
-  .hover-img:hover > img {
-    opacity: 0.7;
-  }
-  
-  .hover-img:hover figcaption {
-    opacity: 1;
-  }
-
-#sch-orgs-head {
-    font-size: 60px;
-    font-weight: 800;
-    font-family: 'Merriweather', serif;
-    margin-top: 50px;
-}
-
-#sch-orgs-subtitle {
-    font-size: 30px;
-} */
 
 #yes-o_logo {
     margin-left: 50px;
@@ -610,6 +657,19 @@ background-color: black;
   }
 }
 
+
+#strand-test-descrip {
+  font-family: 'Merriweather', serif;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+#campus-life{
+  background-image: url(../images/bg-gradient.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .enrollment-process h1 {
     font-family: 'Merriweather', serif;
     font-weight: 800;
@@ -629,7 +689,10 @@ background-color: black;
     height: 500px;
 }
 
-#about-school-h1{
+#about-school-container{
+}
+
+#about-school{
     font-family: 'Merriweather', serif;
     font-weight: 800;
     font-size: 56px;
@@ -695,66 +758,6 @@ background-color: black;
 }
 
 /* LOGIN-REDIRECT */
-
-
-
-/* #portal-redirect-body {
-    background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
-    background-attachment: fixed;
-    font-family: 'Open Sans', sans-serif;
-}
-
-#login-redirect-title {
-    font-family: 'Merriweather', serif;
-    color: white;
-    font-weight: 800;
-    font-size: 60px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    text-shadow: 5px 5px 10px black;
-}
-
-#login-redirect a {
-    text-decoration: none;
-    color: inherit;
-}
-
-#redirect-announcements,
-#redirect-dashboard,
-#redirect-info,
-#redirect-modules,
-#redirect-sched,
-#redirect-grades {
-    margin-bottom: 100px;
-    border-radius: 15px;
-    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
-    transition: 0.5s ease-in-out
-}
-
-#redirect-announcements:hover {
-    background-color:#0c3483;
-    color: white;
-}
-#redirect-dashboard:hover {
-    background-color:#0c3483;
-    color: white;
-}
-#redirect-info:hover {
-    background-color:#0c3483;
-    color: white;
-}
-#redirect-modules:hover {
-    background-color:#0c3483;
-    color: white;
-}
-#redirect-sched:hover {
-    background-color:#0c3483;
-    color: white;
-}
-#redirect-grades:hover {
-    background-color:#0c3483;
-    color: white;
-} */
 
 
 #login-menu-body {

@@ -12,6 +12,27 @@
   
 
    {% block content %}
+   <div id="chatbot-container">
+    <button type="button" id="chatbot-toggle" class="btn btn-primary px-5">LiTEXT BETA 1.0</button>
+    <div id="chatbot">
+        <div id="chatbot-header" class="bg-primary">
+            <h3>LiTEXT BETA 1.0</h3>
+            <button type="button" id="chatbot-close" class="close">&times;</button>
+        </div>
+        <div id="chatbot-body">
+            <form id="chatbot-form">
+              {% csrf_token %}
+                <div class="form-group">
+                  
+                    <label for="message">Ask a question:</label>
+                    <input type="text" class="form-control" id="message" name="message" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
    <div class="jumbotron jumbotron-fluid">
     <div class="container-fluid">
       <div class="row" id="row-2-school-logo">
@@ -23,31 +44,27 @@
     </div>
   </div>
 
-    <section id="announcements" >
-      <div class="container" >
+  <div class="container-fluid">
+    <section id="announcements">
+      <div class="container">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-md-12">
             <h1 class="text-center mb-4" id="school-announcements">Announcements</h1>
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-12">
-            <div id="announcement-carousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="col-md-12">
+            <div id="announcement-carousel" class="carousel slide" data-bs-ride="carousel" style="height:300px;">
               <div class="carousel-inner">
-                {% for article in page_articles.get_children %}
-                  {% if article.slug == 'announcements'%}
-                  {% for announcement_post in article.get_children.specific %}
-                  {% if forloop.counter <= 3 %}
-                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <div class="announcement-card">
-                      <h2 class="announcement-title" style="font-size: 24px;">{{announcement_post.title}}</h2>
-                      <p class="announcement-meta" style="font-size: 14px;">{{announcement_post.date}}</p>
-                      <p class="announcement-snippet">{{announcement_post.body|truncatechars:50|richtext}}</p>
-                      <a href="{{announcement_post.url}}" class="btn btn-primary">Read More</a>
-                    </div>
+                {% for article in recent_announcements.specific %}
+                  {% if forloop.counter <= 2 %}
+                  <div class="carousel-item {% if forloop.first %}active{% endif %} object-fit-contain">
+                    <a href="{{article.url}}" style="text-decoration: none; color: black;"><div class="announcement-card">
+                      <h2 class="announcement-title" style="font-size: 24px;">{{article.title}}</h2>
+                      <p class="announcement-meta" style="font-size: 14px;">{{article.date}}</p>
+                      <p class="announcement-snippet" style="font-size: 16px;">{{article.body|truncatechars:200|richtext}}</p>
+                    </div></a>
                   </div>
-                  {% endif %}
-                  {%endfor%}
                   {% endif%}
                 {% endfor %}
                 <button class="carousel-control-prev" type="button" data-bs-target="#announcement-carousel" data-bs-slide="prev" style="font-size: 24px;">
@@ -64,6 +81,7 @@
         </div>
       </div>
     </section>
+  </div>
 
     <div class="container-fluid mt-5">
       <div class="row">
@@ -75,20 +93,16 @@
         </div>
         <div class="col-md-7">
           <div class="row">
-            {% for article in page_articles.get_children %}
-              {% if article.slug == 'events' %}
-                {% for event_post in article.get_children.specific %}
+            {% for article in recent_events.specific %}
                   {%if forloop.counter <= 6 %}
                     <div class="col-md-4">
                       <div class="card mb-4">
                         <div class="overlay">
-                          <a href="{{event_post.url}}"><h3>{{ event_post.title }}</h3></a>
+                          <a href="{{article.url}}"><h3>{{article.title}}</h3></a>
                         </div>
-                        {% image event_post.feed_image fill-400x400 class="card-img-top" %}
+                        {% image article.feed_image fill-400x400 class="card-img-top" %}
                       </div>
                     </div>
-                  {%endif%}
-                {%endfor%}
               {%endif%}
             {%endfor%}
           </div>
@@ -104,22 +118,18 @@
           </div>
         </div>
         <div class="row">
-          {% for article in page_articles.get_children %}
-            {% if article.slug == 'news' %}
-              {% for news_post in article.get_children.specific %}
+          {% for article in recent_news.specific %}
                 {% if forloop.counter <= 3 %}
                   <div class="col-md-4 mb-4">
                     <div class="card">
-                      {% image news_post.feed_image fill-400x400 class="card-img-top" %}
+                      {% image article.feed_image fill-400x400 class="card-img-top" %}
                       <div class="card-body text-center">
-                        <h4 class="card-title mb-2">{{ news_post.title }}</h4>
-                        <p class="card-text mb-3">{{ news_post.body|truncatechars:200|richtext }}</p>
-                        <a href="{{ news_post.url }}" class="btn btn-primary">Read More</a>
+                        <h4 class="card-title mb-2">{{ article.title }}</h4>
+                        <p class="card-text mb-3">{{ article.body|truncatechars:200|richtext }}</p>
+                        <a href="{{ article.url }}" class="btn btn-primary">Read More</a>
                       </div>
                     </div>
                   </div>
-                {% endif %}
-              {% endfor %}
             {% endif %}
           {% endfor %}
         </div>
@@ -145,9 +155,6 @@
           </div>
         </div>
         
-          
-
-          
         <div class="container-fluid" id="tracks-strands">
           <h1 class="text-center pt-4">Academic Offerings</h1>
           <p class="text-center" id="offerings-subtitle">Discover the tracks and strands offered by the school</p>
@@ -207,109 +214,98 @@
             </div>
           </div>
 
-          <div class="container-fluid mt-5">
+          <div class="container-fluid pb-4 pt-4" id="strand-test">
             <div class="row">
               <div class="col-md-6 mb-4 mb-md-0">
-                <h2 class="text-center">Not sure what strand to choose yet?</h2>
+                <h2 class="text-center" id="strand-test-descrip">Not sure what strand to choose yet?</h2>
               </div>
               <div class="col-md-6 text-center">
-                <a href="#" class="btn btn-primary">Take Our Quiz</a>
+                <a href="https://www.truity.com/test/holland-code-career-test" class="btn btn-primary px-4 py-4">Take A Quiz</a>
               </div>
             </div>
           </div>
-
-          <div class="card w-25">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="image1.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="image2.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="image3.jpg" class="d-block w-100" alt="...">
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-            </div>
           
-
-             
-
-        <div class="container-fluid gx-0">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-md-8 col-lg-6">
-              <h1 class="text-center mb-3" id="sch-orgs-head">School Organizations</h1>
-              <p class="text-center mb-5" id="sch-orgs-subtitle">Join the campus life</p>
+          <div class="container-fluid px-4 py-4" id="campus-life">
+          <div class="row">
+            <div class="col-md-4 order-md-0 sm-12 order-sm-1">
+              <div class="card w-100 mt-2" style="height: 300px;">
+                <div id="carouselOrgs" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="{% static 'images/ssg_pic.jpg'%}" class="d-block w-100 img-fluid object-fit-contain" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'images/bkd_pic.jpg'%}" class="d-block w-100 img-fluid object-fit-contain" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{%static 'images/lac_pic.jpg'%}" class="d-block w-100 img-fluid object-fit-contain" alt="...">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselOrgs" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselOrgs" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 col-lg-3 mb-4">
-              <figure class="hover-img">
-                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                <figcaption>
-                  <h3>Supreme Student Government</h3>
-                </figcaption>
-              </figure>
+            <div class="col-md-4 order-md-1 sm-12 order-sm-2">
+              <div class="card w-100 mt-2" style="height: 300px;">
+                <div id="carouselFacilities" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="{% static 'images/ssg_pic.jpg'%}" class="d-block w-100 img-fluid object-fit-contain" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'images/bkd_pic.jpg'%}" class="d-block w-100 img-fluid object-fit-contain" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{%static 'images/lac_pic.jpg'%}" class="d-block w-100 img-fluid object-fit-contain" alt="...">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselFacilities" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselFacilities" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="col-md-4 col-lg-3 mb-4">
-              <figure class="hover-img">
-                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                <figcaption>
-                  <h3>Supreme Student Government</h3>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="col-md-4 col-lg-3 mb-4">
-              <figure class="hover-img">
-                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                <figcaption>
-                  <h3>Supreme Student Government</h3>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="col-md-4 col-lg-3 mb-4">
-              <figure class="hover-img">
-                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                <figcaption>
-                  <h3>Supreme Student Government</h3>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="col-md-4 col-lg-3 mb-4">
-              <figure class="hover-img">
-                <img src="{%static 'images/ssg-photo.jpg'%}" class="img-fluid">
-                <figcaption>
-                  <h3>Supreme Student Government</h3>
-                </figcaption>
-              </figure>
-            </div>
+                <div class="col-md-4 order-md-2 sm-12 order-sm-0 mt-5 text-center">
+                  <h2 class="text-center text-white" id="school-events">Campus Life</h2>
+                  <p class="text-center mt-3 text-white" id="school-events-subtitle">Check out the latest happenings and prepared plans 
+                    and activities of the school to showcase the talents of Litexians and build a stronger sense of community</p>
+                    <a href="{% url 'student-orgs'%}" class="btn btn-primary">Check out the events</a>
+                </div>
           </div>
         </div>
-        
+            
+          
+      <div class="container-fluid">
         <div class="row gx-0">
-          <div class="enrollment-process">
-            <bold><h1 class="text-center">Enrollment</h1></bold>
-            <p class="text-center" id="enrollment-subtitle">Learn how to be a part of the Litexian community</p>
-            <img src="{% static 'images/enrollment-process.jpg' %}" class="img-fluid">
+          <div class="col lg-12 md-12 sm-12">
+            <div class="enrollment-process">
+              <bold><h1 class="text-center">Enrollment</h1></bold>
+              <p class="text-center" id="enrollment-subtitle">Learn how to be a part of the Litexian community</p>
+              <img src="{% static 'images/enrollment-process.jpg' %}" class="img-fluid">
+            </div>
           </div>
         </div>
-
+      </div>
+          
+      <div class="container-fluid">
         <div class="row" >
-          <div class="col-lg-6 col-md-12 about-school-image-container">
-            <img src="{% static 'images/sch-bg.jpg' %}" alt="School Background" class="about-school-image img-fluid w-100 h-100" style="object-fit: cover;">
+          <div class="col-lg-6 col-md-12 sm-12 about-school-image-container">
+            <img src="{% static 'images/sjlshs_aerial.jpg' %}" alt="School Background" class="about-school-image img-fluid w-100 h-100" style="object-fit: cover;">
           </div>
-          <div class="col-lg-6 col-md-12 about-school-content-container">
-            <h1 class="about-school-heading text-center">Welcome to San Jose Litex Senior High School</h1>
+          <div class="col-lg-6 col-md-12 about-school-content-container" id="about-school-container">
+            <h1 class="about-school-heading text-center" id="about-school">Welcome to San Jose Litex Senior High School</h1>
             <p class="about-school-description">At SJLSHS, we believe that education should be a journey of discovery and growth. Our community of students, teachers, and parents work together to provide our students with the tools they need to succeed both in and beyond the classroom. We offer a range of programs and resources designed to support our students' academic and personal growth, including:</p>
             <ul class="about-school-list">
               <li class="about-school-list-item">Highly qualified teachers who are dedicated to their students' success</li>
@@ -320,6 +316,8 @@
             <p class="about-school-description">We believe that every student has the potential to achieve great things, and we are committed to helping them reach their goals. Whether you are a current student, a prospective student, or a member of our community, we invite you to explore all that SJLSHS has to offer.</p>
           </div>
         </div>
+      </div>
+        
       
         
         
@@ -342,5 +340,68 @@
             <p>0123456789</p>
           </div>
         </div>
+
+
+        <script>
+          $(document).ready(function() {
+          // Hide chatbot on load
+          $("#chatbot").hide();
+
+          // Toggle chatbot on click
+          $("#chatbot-toggle").click(function() {
+            $("#chatbot").toggle();
+            $("#chatbot").fadeIn(400, "slow");
+          });
+
+          // Close chatbot on click
+          $("#chatbot-close").click(function() {
+            $("#chatbot").hide();
+          });
+
+          // Submit form on submit
+          $("#chatbot-form").submit(function(e) {
+            e.preventDefault();
+            var message = $("#message").val();
+            var chatbotBody =$("#chatbot-body");
+            var newMessage = $('<div class="card mt-2 bg-primary"> <div class="card-body"><div class="card-text text-white">' + message + '</div></div></div>')
+            chatbotBody.append(newMessage);
+            newMessage.fadeIn();
+            // Send message to backend using AJAX
+            
+            $.ajax({
+              url: "{% url 'litext'%}",
+              method: "POST",
+              data: {
+                message: message,
+                csrfmiddlewaretoken: "{{ csrf_token }}"
+              },
+              
+              success: function(response) {
+                var chatbotBody = $("#chatbot-body");
+                var newMessage = $('<div class="card mt-2 bg-info"> <div class="card-body"><div class="card-text text-white">' + response.message + '</div></div></div>')
+                chatbotBody.append(newMessage);
+                newMessage.fadeIn();
+                chatbotBody.scrollTop(chatbotBody[0].scrollHeight);
+                // Clear message input
+                $("#message").val("");
+              },
+              error: function(xhr, status, error) {
+                // Handle error
+              }
+            });
+          });
+        });
+
+        </script>
+
+        
+       
+        
+        
+        
+        
+        
+        
+
     {% endblock %}
 </body>

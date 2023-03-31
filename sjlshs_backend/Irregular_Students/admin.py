@@ -17,5 +17,8 @@ class SubjectGradeInline(admin.TabularInline):
 class IrregularStudentAdmin(admin.ModelAdmin):
     inlines = [SubjectGradeInline]
 
+
+    
+
 admin.site.register(IrregularStudent, IrregularStudentAdmin)    
 admin.site.register(SubjectGrade)

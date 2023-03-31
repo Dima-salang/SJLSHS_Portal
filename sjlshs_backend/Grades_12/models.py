@@ -16,7 +16,7 @@ class FirstSem_1stQ(models.Model):
     PE = models.SmallIntegerField(default=0, null=True, blank=True)
     Average = models.IntegerField(default=0, null=True, blank=True)
     lrn = models.CharField(max_length=15)
-    student = models.OneToOneField(StudentUser, on_delete=models.SET_NULL, null=True, related_name="firstsem1stq")
+    student = models.OneToOneField(StudentUser, on_delete=models.CASCADE, null=True, related_name="firstsem1stq")
 
     def __str__(self):
         return f"{self.last_name} - {self.lrn}"
@@ -34,7 +34,7 @@ class FirstSem_2ndQ(models.Model):
     PE = models.SmallIntegerField(default=0, null=True, blank=True)
     Average = models.IntegerField(default=0, null=True, blank=True)
     lrn = models.CharField(max_length=15)
-    student = models.OneToOneField(StudentUser, on_delete=models.SET_NULL, null=True, related_name="firstsem2ndq")
+    student = models.OneToOneField(StudentUser, on_delete=models.CASCADE, null=True, related_name="firstsem2ndq")
 
     def __str__(self):
         return f"{self.last_name} - {self.lrn}"
@@ -50,7 +50,7 @@ class SecondSem_3rdQ(models.Model):
     SPECIALIZED_2 = models.SmallIntegerField(default=0, null=True, blank=True)
     Average = models.IntegerField(default=0, null=True, blank=True)
     lrn = models.CharField(max_length=15)
-    student = models.OneToOneField(StudentUser, on_delete=models.SET_NULL, null=True, related_name="secondsem3rdq")
+    student = models.OneToOneField(StudentUser, on_delete=models.CASCADE, null=True, related_name="secondsem3rdq")
 
     def __str__(self):
         return f"{self.last_name} - {self.lrn}"
@@ -66,7 +66,7 @@ class SecondSem_4thQ(models.Model):
     SPECIALIZED_2 = models.SmallIntegerField(default=0, null=True, blank=True)
     Average = models.IntegerField(default=0, null=True, blank=True)
     lrn = models.CharField(max_length=15)
-    student = models.OneToOneField(StudentUser, on_delete=models.SET_NULL, null=True, related_name="secondsem4thq")
+    student = models.OneToOneField(StudentUser, on_delete=models.CASCADE, null=True, related_name="secondsem4thq")
 
     def __str__(self):
         return f"{self.last_name} - {self.lrn}"   

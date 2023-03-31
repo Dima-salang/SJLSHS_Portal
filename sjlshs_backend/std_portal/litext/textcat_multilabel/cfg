@@ -1,0 +1,12 @@
+{
+  "labels":[
+    "enrollment",
+    "schedule",
+    "course",
+    "tvl_strands",
+    "fee",
+    "organizations",
+    "school_contact"
+  ],
+  "threshold":0.5
+}

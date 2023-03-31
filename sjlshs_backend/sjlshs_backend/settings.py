@@ -185,7 +185,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [    'accounts.auth_backends.EmailBackend',
-                               'django.contrib.auth.backends.ModelBackend',]
+                                'django.contrib.auth.backends.ModelBackend',
+                            ]
 
 
 # Internationalization
@@ -252,7 +253,7 @@ POSTMAN_AUTOCOMPLETER_APP = {
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 
-WAGTAIL_SITE_NAME = 'ADMIN CONTENT CREATION'
+WAGTAIL_SITE_NAME = 'SJLSHS EDITORIAL SITE'
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,

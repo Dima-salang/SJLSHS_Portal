@@ -12,6 +12,20 @@
   
 
    {% block content %}
+   <div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-md-6 col-sm-12 text-center">
+        <div id="splash">
+          <img src="{% static 'images/sjlshs_croppedV4.png'%}" alt="School Logo">
+          <div id="loader"></div>
+          <h1 class="display-4 text-center">Welcome!</h1>
+          <p class="lead mb-4 text-center">
+            Experience world-class education and a vibrant school community at San Jose Litex Senior High School. Our programs are designed to help students reach their full potential and prepare them for success in college and beyond.
+            Get ready to discover your passions, explore new interests, and build lifelong friendships. Welcome to San Jose Litex Senior High School!</p>
+        </div>
+      </div>
+    </div>
+  </div>
    <div id="chatbot-container">
     <button type="button" id="chatbot-toggle" class="btn btn-primary px-5">LiTEXT BETA 1.0</button>
     <div id="chatbot">
@@ -341,6 +355,12 @@
           </div>
         </div>
 
+        <script src="{% static '/admin-lte/plugins/jquery/jquery.min.js' %}"></script>
+        <script>
+          $(window).on("load", function() {
+          $("#splash").fadeOut(2000);
+        });
+        </script>
 
         <script>
           $(document).ready(function() {

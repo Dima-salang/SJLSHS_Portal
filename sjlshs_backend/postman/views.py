@@ -125,6 +125,23 @@ class InboxView(FolderMixin, TemplateView):
     # for TemplateView:
     template_name = 'postman/inbox.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        
+        if user.groups.filter(name='teacher').exists():
+            # Teachers can see all messages
+            context['messages'] = Message.objects.filter(recipient=user)
+        else:
+            # Students can only see messages from their teachers
+            context['messages'] = Message.objects.filter(
+                Q(sender__groups__name='teacher') | Q(recipient=user),
+                recipient=user,
+            ).distinct()
+            
+        return context
+    
+
 
 class SentView(FolderMixin, TemplateView):
     """

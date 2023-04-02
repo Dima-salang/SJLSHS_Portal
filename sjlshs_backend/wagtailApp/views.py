@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from wagtail.models import Page 
+from datetime import datetime
 
 # Create your views here.
 def home_page(request):
@@ -14,6 +15,8 @@ def recent_links(request):
 
 
 def career_center_view(request):
+    datetime_now = datetime.now()
+
     lac_pages = Page.objects.get(slug='litexian-achievers-club')
     print("got litexian pages")
     career_pages = lac_pages.get_children().filter(slug='career-center').first()
@@ -22,6 +25,7 @@ def career_center_view(request):
     print("got articlces")
     
     context = {
-        'career_articles' : career_articles
+        'career_articles' : career_articles,
+        'datetime_now' : datetime_now
     }
     return render(request, 'career-center.html', context)

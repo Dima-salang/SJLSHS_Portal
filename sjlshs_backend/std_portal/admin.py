@@ -4,8 +4,9 @@ from django.db import models
 from django_summernote.admin import SummernoteModelAdmin
 # Register your models here.
 
-
 from .models import Post, Modules, Schedule
+
+
 
 class PostAdmin(SummernoteModelAdmin):
 

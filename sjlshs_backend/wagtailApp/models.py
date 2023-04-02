@@ -1,7 +1,7 @@
 from django.db import models
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel, InlinePanel, TabbedInterface, ObjectList
+from wagtail.admin.panels import FieldPanel, InlinePanel, TabbedInterface, MultiFieldPanel, ObjectList
 from wagtail.images.edit_handlers import ImageChooserPanel
 from modelcluster.fields import ParentalKey
 from wagtail.search import index
@@ -103,6 +103,8 @@ class CareerInformationArticle(Page):
         related_name='+'
     )
     School_Description = RichTextField(blank=True)
+    enrollment_period_start = models.DateField(null=True, blank=True)
+    enrollment_period_end = models.DateField(null=True, blank=True)
     
     search_fields = Page.search_fields + [
         index.SearchField('School_Description'),
@@ -111,7 +113,10 @@ class CareerInformationArticle(Page):
     content_panels = Page.content_panels + [
         FieldPanel('School_Image'),
         FieldPanel('School_Description', classname="full"),
-        
+        MultiFieldPanel([
+            FieldPanel('enrollment_period_start'),
+            FieldPanel('enrollment_period_end'),
+    ],'Enrollment Period'),
     ]
 
     edit_handler = TabbedInterface([

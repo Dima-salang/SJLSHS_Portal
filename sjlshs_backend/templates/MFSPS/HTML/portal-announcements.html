@@ -12,15 +12,18 @@
     <div class="content-wrapper">
     <div class="container-fluid"">
       <div class="row">
-        <div class="col-md-6 col-lg-12">
-          <div class="card shadow-lg rounded">
+        <div class="col-md-6 col-lg-12 col-sm-12">
+          <div class="card shadow-sm rounded">
             <div class="card-header bg-primary text-white">
               <h2 class="card-title mb-0 text-white">Announcements</h2>
             </div>
             <div class="card-body">
               <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+
                 
-                {% for Post in object_list %}  
+                {% for Post in object_list %} 
+                {% if user.section == Post.Section %} 
                 <div class="card shadow-sm rounded mx-auto" style="width: 80%;">
                   <div class="card-body">
                     <!-- Use a badge to indicate the section of the post -->
@@ -55,7 +58,7 @@
                       <!-- Use an icon to indicate the author -->
                       <i
                         class="
-                          bi bi-person-circle me-1 text-primary"
+                          bi bi-person-circle me-1 text-info"
                           style="
                             font-size: 1.5rem;
                             vertical-align: middle;
@@ -73,7 +76,67 @@
                     </p>
                   </div>
                 </div>
+                {% endif %}
                 {% endfor %}
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                {% for Post in object_list %} 
+                {% if Post.Section == universal_section %}
+                <div class="card shadow-sm rounded mx-auto" style="width: 80%;">
+                  <div class="card-body">
+                    <!-- Use a badge to indicate the section of the post -->
+                    <span
+                      class="
+                        badge
+                        bg-info
+                        text-white
+                        float-end
+                        mt-1
+                        ml-2
+                      "
+                      >{{ Post.Section }}</span
+                    >
+                    <!-- Use a heading with a blue accent to display the title of the post -->
+                    <h5
+                      class="
+                        card-title
+                        text-info
+                        border-bottom border-primary pb-2
+                      "
+                      >{{ Post.Title }}</h5>
+                    <!-- Use a paragraph to display the body of the post -->
+                    <p class="card-text">{{ Post.Body|safe }}</p>
+                  </div>
+                  <!-- Use a footer to display the author and date of the post -->
+                  <div class="card-footer bg-white">
+                    <p
+                      class="
+                        card-text small text-muted mb-0 d-flex align-items-center justify-content-between"
+                      >
+                      <!-- Use an icon to indicate the author -->
+                      <i
+                        class="
+                          bi bi-person-circle me-1 text-info"
+                          style="
+                            font-size: 1.5rem;
+                            vertical-align: middle;
+                          "
+                          ></i>{{ Post.Author }}
+                      <!-- Use an icon to indicate the date -->
+                      {{ Post.Published }}<i
+                        class="
+                          bi bi-calendar-check ms-1 text-info"
+                          style="
+                            font-size: 1.5rem;
+                            vertical-align: middle;
+                          "
+                          ></i>
+                    </p>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
               </div>
               </div>
             </div>

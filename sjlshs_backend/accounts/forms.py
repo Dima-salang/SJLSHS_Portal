@@ -11,13 +11,17 @@ class CustomCreationForm(UserCreationForm):
     
     class Meta(UserCreationForm.Meta):
         model = StudentUser
-        fields = ('lrn', 'last_name', 'first_name', 'grade_year', 'birthday', 'username', 'email', 'image_id', 'password1', 'password2')
+        fields = ('lrn', 'last_name', 'first_name', 'grade_year', 'birthday', 'username', 'email', 'image_id', 'password1', 'password2', 'data_privacy_agreed')
         widgets = {
             'birthday': forms.DateInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'YYYY-MM-DD'
             }),
-            'image_id': forms.ClearableFileInput(attrs={'multiple': True})
+            'image_id': forms.ClearableFileInput(attrs={'multiple': True}),
+            'data_privacy_agreed': forms.CheckboxInput(attrs={
+                'class': 'form-check-input',
+                
+                })
         }
         enctype = 'multipart/form-data'
 

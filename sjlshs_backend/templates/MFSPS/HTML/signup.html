@@ -9,17 +9,59 @@
 </head>
 {% block content%}
 <body class="register-page">
-    <div class="container">
+    <div class="container-fluid pt-3">
         <div class="row justify-content-center">
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-center text-white" id="staticBackdropLabel">Data Privacy Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Introduction</h4>
+                        <p>This document outlines the data privacy policy for the Multi-information Academic Portal for Students or MAPS of San Jose Litex Senior High School. MAPS is a web-based platform that allows students to access various academic and administrative services, such as enrollment, grades, schedule, announcements and advisories, module resources, and career services.</p>
+
+                        <h4>Personal and sensitive personal information</h4>
+                        <p>MAPS collects, uses, stores, and discloses personal and sensitive personal information of students, such as name, student number, email address, academic records, and other information relevant to the provision of the services. The student portal also uses cookies and other technologies to enhance the functionality and security of the platform.</p>
+                        
+                        <h4>Data privacy compliance</h4>
+                        <p>MAPS processes personal and sensitive personal information in accordance with the Philippine Data Privacy Act of 2012 (DPA) and its implementing rules and regulations (IRR), as well as the policies and guidelines of San Jose Litex Senior High School and the University of the Philippines System. MAPS respects the rights of data subjects to access, correct, object, erase, or withdraw consent to the processing of their personal and sensitive personal information, subject to certain limitations and conditions.</p>
+                        
+                        <h4>Data security and access control</h4>
+                        <p>MAPS implements reasonable and appropriate physical, organizational, and technical measures to protect personal and sensitive personal information from unauthorized access, use, modification, disclosure, or destruction. MAPS also ensures that only authorized personnel have access to personal and sensitive personal information on a need-to-know basis.</p>
+                        
+                        <h4>Data sharing and transfers</h4>
+                        <p>MAPS may also transfer personal and sensitive personal information to other jurisdictions, subject to compliance with applicable laws and regulations.</p>
+                        
+                        <h4>Changes to the policy</h4>
+                        <p>MAPS may update this data privacy policy from time to time to reflect changes in the legal or regulatory environment, or in the operations or services of the platform. MAPS will notify students of any material changes through email or other means of communication.</p>
+                        
+                        <h4>Consent and responsibility</h4>
+                        <p>By accessing or using MAPS, students agree to this data privacy policy and consent to the processing of their personal and sensitive personal information as described herein. Students are responsible for keeping their login credentials confidential and for logging out of the platform after each session. Students are also encouraged to review this data privacy policy periodically and to contact us if they have any questions or concerns.</p>
+                    
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
+                    </div>
+                </div>
+                </div>
+            </div>
             <div class="col-md-8 col-sm-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h2 class="text-center">SJLSHS REGISTRATION</h2>
+                    <div class="card-header text-center bg-light">
+                        <img src="{%static 'images/std_portal_logo2.png'%}" style="height:300px; width: 300px;">
+                        <h2 class="text-center">REGISTRATION</h2>
                     </div>
                     <div class="card-body">
                         <form method="post" enctype = 'multipart/form-data'> {% csrf_token %}
                             {{form|crispy }}
+                            
                             <div class="form-group text-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Data Privacy Policy
+                                  </button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>

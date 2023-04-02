@@ -65,11 +65,12 @@ class StudentUser(AbstractUser):
     age = models.PositiveIntegerField(default=0)
     email = models.EmailField()
     birthday = models.DateField()
-    image_id = models.ImageField(upload_to='media/image_id', null=True, blank=True)
+    image_id = models.ImageField(upload_to='media/image_id', null=True, blank=True, verbose_name="Proof of Enrollment")
     grade_year = models.ForeignKey(StudentYear, null=True, on_delete=models.SET_NULL)
     section = models.ForeignKey(StudentSection, null=True, on_delete=models.SET_NULL, blank=True)
-    strand =models.ForeignKey(TrackAndStrand, null=True, on_delete=models.SET_NULL, blank=True)
+    strand = models.ForeignKey(TrackAndStrand, null=True, on_delete=models.SET_NULL, blank=True)
     is_email_verified = models.BooleanField(null=True, blank=True)
+    data_privacy_agreed = models.BooleanField(null=True,)
 
     REQUIRED_FIELDS = ['lrn', 'age', 'email', 'birthday']
                 

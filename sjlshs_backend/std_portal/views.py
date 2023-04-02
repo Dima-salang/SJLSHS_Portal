@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from django.urls import reverse_lazy
-from accounts.models import StudentUser, Db_Students
+from accounts.models import StudentUser, Db_Students, StudentSection
 from .models import Post, Modules, Schedule
+from .forms import ModuleFilterForm
 from django.conf import settings
 from django_otp.decorators import otp_required
 from wagtail.models import Page
@@ -68,10 +69,19 @@ class PortalAnnouncements(ListView):
     def get_queryset(self):
         user = self.request.user
         if user.is_superuser:
-            queryset = Post.objects.all()
+            queryset = Post.objects.all().order_by('-Published')
+            print("superuser returned all objects in post queryset")
         else:
-            queryset = Post.objects.filter(Q(Section=user.section) | Q(Section=3))
+            queryset = Post.objects.filter(Q(Section=user.section)).order_by('-Published')
+            print("user got posts related to their section")
+        print("returned queryset")
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['universal_section'] = StudentSection.objects.get(section='Universal')
+        return context
+    
     
 
 
@@ -80,9 +90,43 @@ class PortalSched(ListView):
     template_name = 'portal-sched.html'
 
 
-class PortalModuleRedirect(TemplateView):
-    template_name = 'portal-modules-redirect.html'
+def search(request):
+    form = ModuleFilterForm()
+    module_objs = Modules.objects.all()
+    modules = module_objs
+    if request.method == 'POST':
+        print("Got get request.")
+        title = request.POST.get('title_search')
+        print(f"Searching for {title}")
+        grade_level = request.POST.get('grade_level')
+        print(f"Searching for {grade_level}")
+        subject = request.POST.get('subject')
+        print(f"Searching for {subject}")
 
+        if title or grade_level or subject:
+
+            if title:
+                modules = module_objs.filter(Q(title__icontains=title))
+            if grade_level:
+                modules = module_objs.filter(Q(grade=grade_level))
+            if subject:
+                modules = module_objs.filter(Q(subject=subject))
+        
+        context = {
+            'modules': modules,
+            'form' : form,
+            'title' : title,
+            'grade_level' : grade_level,
+            'subject' : subject
+        }
+
+        return render(request, 'portal-modules-redirect.html', context)
+    
+    context = {
+        'form' : form,
+        'modules' : modules
+    }
+    return render(request, 'module-filter.html', context)
 
 class PortalModuleRedirectG12(TemplateView):
     template_name = 'portal-modules-redirectG12.html'
